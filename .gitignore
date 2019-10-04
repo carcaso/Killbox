@@ -1,0 +1,8 @@
+.DS_Store
+
+# Compiled Java Files
+**/out/
+**/.idea/
+**/*.iml
+**/.idea/*.xml
+**/out/*.class
