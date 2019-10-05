@@ -8,9 +8,15 @@ public class Door implements Collidable {
     Position pos;
     Key[] keys;
     boolean open;
+    private int width = 25;
+    private int height = 40;
 
     public Door(Position position, Key[] keys) {
         open = false;
+        pos = position;
+        this.keys = keys;
+        door = new Rectangle(pos.getX(), pos.getY(), width, height);
+        door.fill();
     }
 
     @Override
@@ -18,7 +24,7 @@ public class Door implements Collidable {
 
     }
 
-    public boolean isOpen(){
-        return false;
+    public boolean isOpen() {
+        return open;
     }
 }

@@ -19,6 +19,7 @@ public class Key implements Collidable {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), size, size);
         key.setColor(Color.YELLOW);
+        key.fill();
     }
 
     @Override

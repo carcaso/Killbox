@@ -30,7 +30,7 @@ public abstract class Maps {
         return door;
     }
 
-    public Key[] getKey() {
+    public Key[] getKeys() {
         return key;
     }
 
@@ -50,7 +50,7 @@ public abstract class Maps {
         this.door = door;
     }
 
-    public void setKey(Key[] key) {
+    public void setKeys(Key[] key) {
         this.key = key;
     }
 }
