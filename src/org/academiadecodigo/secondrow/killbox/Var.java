@@ -8,4 +8,5 @@ public class Var {
     public static final int WALL_PADDING = 25;
     public static final int DOOR_WIDTH = 40;
     public static final int DOOR_HEIGHT = 40;
-}
+    public static final int PLAYER_HEIGHT = 40;
+    public static final int PLAYER_WIDTH = 20;}
