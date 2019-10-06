@@ -15,8 +15,8 @@ public class Player implements Movable, Collidable, KeyboardHandler {
 
 
     // Keybinds for playing movement
-    private boolean keySpace, keyD, keyA;
-
+    private boolean keyD, keyA;
+    private boolean isJumping;
 
     private int dx = 0;
     private int dy = 0;
@@ -28,9 +28,10 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     // TODO: 2019-10-06 Change from maximum Y value to incremental value
     private int maxJump;
     private int jumpInterval = -5;
+    private boolean specialJump;
 
-
-    public Player() {
+    public Player(boolean specialJump) {
+        this.specialJump = specialJump;
         this.kbd = new Keyboard(this);
         player = new Rectangle(Var.PADDING + Var.WALL_PADDING + 1100, 500, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
     }
@@ -45,6 +46,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_D, KeyboardEventType.KEY_RELEASED);
 
         addKeybind(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_PRESSED);
+        addKeybind(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_RELEASED);
     }
 
     public void checkUpdate() {
@@ -54,30 +56,19 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ? dx + 3 : dx;
         dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - 3 : dx;
 
-        /*
-        if (keySpace) {
-            if (player.getY() <= maxJump) {
-                keySpace = false;
-                dy = 0;
-                return;
-            }
-            dy = jumpInterval;
+        if (player.getY() >= maxY) {
+            dy = 0;
         }
-        */
 
-        if (keySpace) {
+        if (isJumping) {
             if (maxJump <= 0) {
-                keySpace = false;
+                isJumping = false;
                 dy = 0;
                 return;
             }
 
             dy = jumpInterval;
             maxJump -= Math.abs(jumpInterval);
-        }
-
-        if (!keySpace && player.getY() >= maxY) {
-            dy = 0;
         }
     }
 
@@ -91,17 +82,16 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 keyD = true;
                 break;
             case KeyboardEvent.KEY_SPACE:
-
-                // FIXME: 2019-10-06 implement with collision
-                if (player.getY() != maxY) {
+                // TODO: 2019-10-06 Change maxY with collision
+                if (!isJumping) {
+                    if (player.getY() == maxY) {
+                        maxJump = Var.PLAYER_HEIGHT * 10;
+                        isJumping = true;
+                        break;
+                    }
                     maxJump = 0;
-                    break;
+                    isJumping = false;
                 }
-
-                // TODO: 2019-10-06 Find out if value resets in jumping outside the ground
-                maxJump = Var.PLAYER_HEIGHT * 3;
-                keySpace = true;
-                break;
         }
     }
 
@@ -113,6 +103,11 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_D:
                 keyD = false;
+                break;
+            case KeyboardEvent.KEY_SPACE:
+                if (specialJump) {
+                    isJumping = false;
+                }
                 break;
         }
     }

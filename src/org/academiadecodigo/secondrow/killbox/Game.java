@@ -21,7 +21,7 @@ public class Game {
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
 
-        p1 = new Player();
+        p1 = new Player(false);
         p1.init();
     }
 
