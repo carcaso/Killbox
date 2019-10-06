@@ -7,17 +7,18 @@ public class Key implements Collidable {
 
     private Rectangle key;
     private Position pos;
-    private int size = 5;
+    public static final int SIZE = 15;
 
-    /*public Key(Position position, Color color) {
+    public Key(Position position, Color color) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), size, size);
-
-    }*/
+        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+        key.setColor(color);
+        key.fill();
+    }
 
     public Key(Position position) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), size, size);
+        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         key.setColor(Color.YELLOW);
         key.fill();
     }

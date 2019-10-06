@@ -5,10 +5,17 @@ import org.academiadecodigo.secondrow.graphics.Rectangle;
 
 public class Game {
 
-    Rectangle background;
+    private Rectangle background;
+    private Rectangle walls;
 
     public void init() {
-        background = new Rectangle(Var.PADDING, Var.PADDING, Var.WIDTH, Var.HEIGHT);
+        // Create walls (If later they change by level, move this code).
+        walls = new Rectangle(Var.PADDING, Var.PADDING, Var.WIDTH, Var.HEIGHT);
+        walls.setColor(Color.DARK_GRAY);
+        walls.fill();
+
+        background = new Rectangle(Var.PADDING + Var.WALL_PADDING, Var.PADDING + Var.WALL_PADDING,
+                Var.WIDTH - 2 * Var.WALL_PADDING, Var.HEIGHT - 2 * Var.WALL_PADDING);
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
     }
