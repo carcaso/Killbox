@@ -26,6 +26,10 @@ public abstract class Maps {
         return jumpBoxes;
     }
 
+    public Platform getPlatform(int index) {
+        return platforms[index];
+    }
+
     public Door getDoor() {
         return door;
     }

@@ -3,7 +3,7 @@ package org.academiadecodigo.secondrow.killbox.objects;
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 
-public class Key implements Collidable {
+public class Key {
 
     private Rectangle key;
     private Position pos;
@@ -23,8 +23,4 @@ public class Key implements Collidable {
         key.fill();
     }
 
-    @Override
-    public void collide() {
-        // disappear when collided
-    }
 }

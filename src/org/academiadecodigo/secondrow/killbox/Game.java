@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
+import org.academiadecodigo.secondrow.killbox.maps.Maps;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
 
 public class Game {
@@ -21,13 +22,13 @@ public class Game {
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
 
-        p1 = new Player(false);
+        p1 = new Player(true);
         p1.init();
     }
 
-    public void start() {
+    public void start(Maps maps) {
         while (true) {
-            p1.checkUpdate();
+            p1.checkUpdate(maps);
             p1.move();
             // FIXME: 2019-10-06 FPS
             try {

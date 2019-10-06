@@ -6,7 +6,7 @@ import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 
-public class Platform implements Collidable {
+public class Platform{
 
     private Position pos;
     private int width;
@@ -62,8 +62,12 @@ public class Platform implements Collidable {
         return height;
     }
 
-    @Override
-    public void collide() {
-
+    public int getX() {
+        return platform.getX();
     }
+
+    public int getY() {
+        return platform.getY();
+    }
+
 }

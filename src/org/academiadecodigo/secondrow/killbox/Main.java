@@ -7,6 +7,6 @@ public class Main {
         Game g = new Game();
         g.init();
         Level1 level1 = new Level1();
-        g.start();
+        g.start(level1);
     }
 }

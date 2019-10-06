@@ -6,6 +6,7 @@ import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
 import org.academiadecodigo.secondrow.killbox.Var;
+import org.academiadecodigo.secondrow.killbox.maps.Maps;
 
 
 public class Player implements Movable, Collidable, KeyboardHandler {
@@ -17,6 +18,10 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     // Keybinds for playing movement
     private boolean keyD, keyA;
     private boolean isJumping;
+    private boolean isLanding;
+    private boolean isBumpingHead;
+    private boolean isBumpingRight;
+    private boolean isBumpingLeft;
 
     private int dx = 0;
     private int dy = 0;
@@ -49,19 +54,21 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_RELEASED);
     }
 
-    public void checkUpdate() {
+    public void checkUpdate(Maps map) {
         dx = 0;
         dy = -jumpInterval;
 
         dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ? dx + 3 : dx;
         dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - 3 : dx;
 
-        if (player.getY() >= maxY) {
+        collide(map);
+
+        if (player.getY() >= maxY || isLanding) {
             dy = 0;
         }
 
         if (isJumping) {
-            if (maxJump <= 0) {
+            if (maxJump <= 0 || isBumpingHead) {
                 isJumping = false;
                 dy = 0;
                 return;
@@ -85,7 +92,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 // TODO: 2019-10-06 Change maxY with collision
                 if (!isJumping) {
                     if (player.getY() == maxY) {
-                        maxJump = Var.PLAYER_HEIGHT * 10;
+                        maxJump = Var.PLAYER_HEIGHT * 20;
                         isJumping = true;
                         break;
                     }
@@ -113,8 +120,47 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     }
 
     @Override
-    public void collide() {
+    public void collide(Maps map) {
 
+        for (int i = 0; i <= 1; i++) {
+
+            int playerStartX = player.getX();
+            int playerStartY = player.getY();
+
+            int playerEndX = player.getX() + Var.PLAYER_WIDTH;
+            int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
+
+            int objectStartX = map.getPlatform(i).getX();
+            int objectStartY = map.getPlatform(i).getY();
+
+            int objectEndX = map.getPlatform(i).getX() + map.getPlatform(i).getWidth();
+            int objectEndY = map.getPlatform(i).getY() + map.getPlatform(i).getHeight();
+
+            if ((playerStartX >= objectStartX && playerEndX <= objectEndX)) {
+
+                if (playerEndY == objectStartY) {
+                    System.out.println("LANDING AT X: " + player.getX() + " AND Y: " + player.getY());
+                    isLanding = true;
+                    return;
+                }
+
+                if (playerStartY == objectEndY) {
+                    System.out.println("BUMPED HEAD AT X: " + player.getX() + " AND Y: " + player.getY());
+                    isBumpingHead = true;
+                    return;
+                }
+            }
+            if (playerStartY >= objectStartY && playerEndY <= objectEndY) {
+                if (playerEndX == objectStartY) {
+                    System.out.println("BUMPED RIGHT AT X: " + player.getX() + " AND Y: " + player.getY());
+                    isBumpingRight = true;
+                    return;
+                }
+            }
+        }
+        isBumpingHead = false;
+        isLanding = false;
+        isBumpingRight = false;
     }
 
     // TODO: 2019-10-06 Move this to draw or something else

@@ -18,7 +18,12 @@ public class Level1 extends Maps {
         // Door platform
         getPlatforms()[0] = new Platform(new Position(1085, 160), 205, 25);
         // middle platform
-        getPlatforms()[1] = new Platform(350, 90);
+        // getPlatforms()[1] = new Platform(350, 90);
+        // int x = Var.PADDING + Var.WIDTH  / 2 - width  / 2 = 10 + 640 - 175 = 475
+        // int y = Var.PADDING + Var.HEIGHT / 2 - height / 2; 360  = 325
+        getPlatforms()[1] = new Platform(new Position(475, 325), 350, 90);
+
+        // w: 350, h: 90
 
         // Create a key 5 pixels above platform and in the center of the screen
         getKeys()[0] = new Key(new Position(Var.WIDTH / 2 - Key.SIZE / 2 + Var.PADDING,
