@@ -14,15 +14,19 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     private Keyboard kbd;
 
 
+    // Keybinds for playing movement
     private boolean keySpace, keyD, keyA;
+
 
     private int dx = 0;
     private int dy = 0;
 
-    //
+    // Max Y that the player can move
     private int maxY = Var.HEIGHT - Var.PLAYER_HEIGHT - Var.WALL_PADDING + Var.PADDING;
     private int minX = Var.PADDING + Var.WALL_PADDING;
-    private int maxJump = Var.HEIGHT - Var.HEIGHT / 3;
+
+    // TODO: 2019-10-06 Change from maximum Y value to incremental value
+    private int maxJump;
     private int jumpInterval = -5;
 
 
@@ -47,9 +51,10 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         dx = 0;
         dy = -jumpInterval;
 
-        dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ? dx + 1 : dx;
-        dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - 1 : dx;
+        dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ? dx + 3 : dx;
+        dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - 3 : dx;
 
+        /*
         if (keySpace) {
             if (player.getY() <= maxJump) {
                 keySpace = false;
@@ -58,13 +63,24 @@ public class Player implements Movable, Collidable, KeyboardHandler {
             }
             dy = jumpInterval;
         }
+        */
+
+        if (keySpace) {
+            if (maxJump <= 0) {
+                keySpace = false;
+                dy = 0;
+                return;
+            }
+
+            dy = jumpInterval;
+            maxJump -= Math.abs(jumpInterval);
+        }
 
         if (!keySpace && player.getY() >= maxY) {
             dy = 0;
         }
     }
 
-    // TODO: 2019-10-06 Implement update checker
     @Override
     public void keyPressed(KeyboardEvent e) {
         switch (e.getKey()) {
@@ -75,9 +91,15 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 keyD = true;
                 break;
             case KeyboardEvent.KEY_SPACE:
+
+                // FIXME: 2019-10-06 implement with collision
                 if (player.getY() != maxY) {
+                    maxJump = 0;
                     break;
                 }
+
+                // TODO: 2019-10-06 Find out if value resets in jumping outside the ground
+                maxJump = Var.PLAYER_HEIGHT * 3;
                 keySpace = true;
                 break;
         }
@@ -117,10 +139,6 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         keybind.setKey(key);
         keybind.setKeyboardEventType(type);
         kbd.addEventListener(keybind);
-    }
-
-
-    public void jump() {
     }
 
     public boolean isDead() {
