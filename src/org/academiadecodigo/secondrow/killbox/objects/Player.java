@@ -38,7 +38,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     public Player(boolean specialJump) {
         this.specialJump = specialJump;
         this.kbd = new Keyboard(this);
-        player = new Rectangle(Var.PADDING + Var.WALL_PADDING + 1100, 500, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+        player = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
     }
 
     public void init() {
@@ -89,10 +89,9 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 keyD = true;
                 break;
             case KeyboardEvent.KEY_SPACE:
-                // TODO: 2019-10-06 Change maxY with collision
                 if (!isJumping) {
                     if (player.getY() == maxY) {
-                        maxJump = Var.PLAYER_HEIGHT * 20;
+                        maxJump = Var.PLAYER_JUMP_HEIGHT;
                         isJumping = true;
                         break;
                     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
-<project name="SimpleGraphics" default="jarfile">
+<project name="Killbox" basedir="." default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="simplegraphics" />
+        <property name="project.name" value="Killbox" />
         <property name="src.dir" value="src" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
