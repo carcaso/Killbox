@@ -10,7 +10,6 @@ public class JumpBox extends Platform {
     }
 
     public void boost() {
-
     }
 }
 

@@ -16,8 +16,10 @@ public class Player implements Movable, Collidable, KeyboardHandler {
 
 
     // Keybinds for playing movement
-    private boolean keyD, keyA;
+    private boolean keyD, keyA, keyW, keySpace;
     private boolean isJumping;
+    private boolean boosted;
+
     private boolean isLanding;
     private boolean isBumpingHead;
     private boolean isBumpingRight;
@@ -28,7 +30,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
 
     // Max Y that the player can move
     private int maxY = Var.HEIGHT - Var.PLAYER_HEIGHT - Var.WALL_PADDING + Var.PADDING;
-    private int minX = Var.PADDING + Var.WALL_PADDING;
+    private int minY = Var.PADDING + Var.WALL_PADDING;
 
     // TODO: 2019-10-06 Change from maximum Y value to incremental value
     private int maxJump;
@@ -52,6 +54,9 @@ public class Player implements Movable, Collidable, KeyboardHandler {
 
         addKeybind(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_SPACE, KeyboardEventType.KEY_RELEASED);
+
+        addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_PRESSED);
+        addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
     }
 
     public void checkUpdate(Maps map) {
@@ -67,18 +72,32 @@ public class Player implements Movable, Collidable, KeyboardHandler {
             dy = 0;
         }
 
-        if (isJumping) {
-            if (maxJump <= 0 || isBumpingHead) {
-                isJumping = false;
-                dy = 0;
-                return;
+        if (keySpace || boosted) {
+            if ((player.getY() == maxY || isLanding) && !boosted) {
+                maxJump = Var.PLAYER_JUMP_HEIGHT;
+                isJumping = true;
             }
 
-            dy = jumpInterval;
-            maxJump -= Math.abs(jumpInterval);
+            if ((player.getY() == maxY  || isLanding) && boosted) {
+                maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
+                isJumping = true;
+            }
+
+            if (isJumping || boosted) {
+                if (maxJump <= 0 || isBumpingHead || player.getY() == minY) {
+                    isJumping = false;
+                    boosted = false;
+                    maxJump = 0;
+                    dy = 0;
+                    return;
+                }
+
+                dy = jumpInterval;
+                maxJump -= Math.abs(jumpInterval);
+            }
         }
     }
- 
+
     @Override
     public void keyPressed(KeyboardEvent e) {
         switch (e.getKey()) {
@@ -89,15 +108,11 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 keyD = true;
                 break;
             case KeyboardEvent.KEY_SPACE:
-                if (!isJumping) {
-                    if (player.getY() == maxY) {
-                        maxJump = Var.PLAYER_JUMP_HEIGHT;
-                        isJumping = true;
-                        break;
-                    }
-                    maxJump = 0;
-                    isJumping = false;
-                }
+                keySpace = true;
+                break;
+            case KeyboardEvent.KEY_W:
+                boosted = true;
+                break;
         }
     }
 
@@ -111,9 +126,12 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 keyD = false;
                 break;
             case KeyboardEvent.KEY_SPACE:
+                keySpace = false;
                 if (specialJump) {
                     isJumping = false;
                 }
+                break;
+            case KeyboardEvent.KEY_W:
                 break;
         }
     }
@@ -121,7 +139,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     @Override
     public void collide(Maps map) {
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i < map.getPlatforms().length; i++) {
 
             int playerStartX = player.getX();
             int playerStartY = player.getY();
@@ -138,20 +156,20 @@ public class Player implements Movable, Collidable, KeyboardHandler {
             if ((playerStartX >= objectStartX && playerEndX <= objectEndX)) {
 
                 if (playerEndY == objectStartY) {
-                    System.out.println("LANDING AT X: " + player.getX() + " AND Y: " + player.getY());
+                    //System.out.println("LANDING AT X: " + player.getX() + " AND Y: " + player.getY());
                     isLanding = true;
                     return;
                 }
 
                 if (playerStartY == objectEndY) {
-                    System.out.println("BUMPED HEAD AT X: " + player.getX() + " AND Y: " + player.getY());
+                    //System.out.println("BUMPED HEAD AT X: " + player.getX() + " AND Y: " + player.getY());
                     isBumpingHead = true;
                     return;
                 }
             }
             if (playerStartY >= objectStartY && playerEndY <= objectEndY) {
                 if (playerEndX == objectStartY) {
-                    System.out.println("BUMPED RIGHT AT X: " + player.getX() + " AND Y: " + player.getY());
+                    //System.out.println("BUMPED RIGHT AT X: " + player.getX() + " AND Y: " + player.getY());
                     isBumpingRight = true;
                     return;
                 }
