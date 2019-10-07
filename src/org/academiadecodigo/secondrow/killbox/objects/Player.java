@@ -78,7 +78,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
             maxJump -= Math.abs(jumpInterval);
         }
     }
-
+ 
     @Override
     public void keyPressed(KeyboardEvent e) {
         switch (e.getKey()) {
