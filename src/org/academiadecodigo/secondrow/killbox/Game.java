@@ -10,6 +10,7 @@ public class Game {
     private Rectangle background;
     private Rectangle walls;
     private Player p1;
+    private CollisionDetector collisionDetector;
 
     public void init() {
         // Create walls (If later they change by level, move this code).
@@ -24,11 +25,15 @@ public class Game {
 
         p1 = new Player(true);
         p1.init();
+
+
     }
 
     public void start(Map map) {
+        collisionDetector = new CollisionDetector(map, p1);
+
         while (true) {
-            p1.checkUpdate(map);
+            p1.update(collisionDetector);
             p1.move();
             // FIXME: 2019-10-06 FPS
             try {

@@ -5,13 +5,13 @@ import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
+import org.academiadecodigo.secondrow.killbox.CollisionDetector;
 import org.academiadecodigo.secondrow.killbox.Var;
-import org.academiadecodigo.secondrow.killbox.maps.Map;
 
 
-public class Player implements Movable, Collidable, KeyboardHandler {
+public class Player implements Movable, KeyboardHandler {
 
-    private Rectangle player;
+    private Rectangle playerAvatar;
     private Keyboard kbd;
 
 
@@ -20,15 +20,10 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     private boolean isJumping;
     private boolean boosted;
 
-    private boolean isLanding;
-    private boolean isBumpingHead;
-    private boolean isBumpingRight;
-    private boolean isBumpingLeft;
-
     private int dx = 0;
     private int dy = 0;
 
-    // Max Y that the player can move
+    // Max Y that the playerAvatar can move
     private int maxY = Var.HEIGHT - Var.PLAYER_HEIGHT - Var.WALL_PADDING + Var.PADDING;
     private int minY = Var.PADDING + Var.WALL_PADDING;
 
@@ -40,11 +35,11 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     public Player(boolean specialJump) {
         this.specialJump = specialJump;
         this.kbd = new Keyboard(this);
-        player = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+        playerAvatar = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
     }
 
     public void init() {
-        player.fill();
+        playerAvatar.fill();
 
         addKeybind(KeyboardEvent.KEY_A, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_A, KeyboardEventType.KEY_RELEASED);
@@ -59,33 +54,36 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
     }
 
-    public void checkUpdate(Map map) {
+    public void update(CollisionDetector collisionDetector) {
         dx = 0;
         dy = -jumpInterval;
 
-        dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ?
+        dx = (keyD && playerAvatar.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ?
                 dx + Var.PLAYER_VELOCITY : dx;
-        dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - Var.PLAYER_VELOCITY : dx;
+        dx = (keyA && playerAvatar.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - Var.PLAYER_VELOCITY : dx;
 
-        collide(map);
+        boolean[] bumps = collisionDetector.check();
+        boolean isBumpingHead = bumps[0];
+        boolean isLanding = bumps[1];
+        boolean isBumpingRight = bumps[2];
 
-        if (player.getY() >= maxY || isLanding) {
+        if (playerAvatar.getY() >= maxY || isLanding) {
             dy = 0;
         }
 
         if (keySpace || boosted) {
-            if ((player.getY() == maxY || isLanding) && !boosted) {
+            if ((playerAvatar.getY() == maxY || isLanding) && !boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT;
                 isJumping = true;
             }
 
-            if ((player.getY() == maxY  || isLanding) && boosted) {
+            if ((playerAvatar.getY() == maxY  || isLanding) && boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
                 isJumping = true;
             }
 
             if (isJumping || boosted) {
-                if (maxJump <= 0 || isBumpingHead || player.getY() == minY) {
+                if (maxJump <= 0 || isBumpingHead || playerAvatar.getY() == minY) {
                     isJumping = false;
                     boosted = false;
                     maxJump = 0;
@@ -97,6 +95,14 @@ public class Player implements Movable, Collidable, KeyboardHandler {
                 maxJump -= Math.abs(jumpInterval);
             }
         }
+    }
+
+    public int getX() {
+        return playerAvatar.getX();
+    }
+
+    public int getY(){
+        return playerAvatar.getY();
     }
 
     @Override
@@ -137,58 +143,14 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         }
     }
 
-    @Override
-    public void collide(Map map) {
-
-        for (int i = 0; i < map.getPlatforms().length; i++) {
-
-            int playerStartX = player.getX();
-            int playerStartY = player.getY();
-
-            int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-            int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
-
-            int objectStartX = map.getPlatform(i).getX();
-            int objectStartY = map.getPlatform(i).getY();
-
-            int objectEndX = map.getPlatform(i).getX() + map.getPlatform(i).getWidth();
-            int objectEndY = map.getPlatform(i).getY() + map.getPlatform(i).getHeight();
-
-            if ((playerStartX >= objectStartX && playerEndX <= objectEndX)) {
-
-                if (playerEndY == objectStartY) {
-                    //System.out.println("LANDING AT X: " + player.getX() + " AND Y: " + player.getY());
-                    isLanding = true;
-                    return;
-                }
-
-                if (playerStartY == objectEndY) {
-                    //System.out.println("BUMPED HEAD AT X: " + player.getX() + " AND Y: " + player.getY());
-                    isBumpingHead = true;
-                    return;
-                }
-            }
-            if (playerStartY >= objectStartY && playerEndY <= objectEndY) {
-                if (playerEndX == objectStartY) {
-                    //System.out.println("BUMPED RIGHT AT X: " + player.getX() + " AND Y: " + player.getY());
-                    isBumpingRight = true;
-                    return;
-                }
-            }
-        }
-        isBumpingHead = false;
-        isLanding = false;
-        isBumpingRight = false;
-    }
-
     // TODO: 2019-10-06 Move this to draw or something else
     @Override
     public void move() {
-        player.translate(dx, dy);
+        playerAvatar.translate(dx, dy);
     }
 
     /**
-     * Adds keybinds for the player
+     * Adds keybinds for the playerAvatar
      *
      * @param key
      * @param type
