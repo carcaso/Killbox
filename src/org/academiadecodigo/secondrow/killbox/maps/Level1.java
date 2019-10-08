@@ -6,7 +6,7 @@ import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
-public class Level1 extends Maps {
+public class Level1 extends Map {
 
     // TODO: 06/10/2019 Add walls to level.
     // 2 plats, 1 jump, 1 door, 1 enemy, 1 key

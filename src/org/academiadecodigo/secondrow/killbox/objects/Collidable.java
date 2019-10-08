@@ -1,8 +1,8 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
-import org.academiadecodigo.secondrow.killbox.maps.Maps;
+import org.academiadecodigo.secondrow.killbox.maps.Map;
 
 public interface Collidable {
 
-   void collide(Maps map);
+   void collide(Map map);
 }

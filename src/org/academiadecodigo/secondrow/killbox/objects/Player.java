@@ -6,7 +6,7 @@ import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
 import org.academiadecodigo.secondrow.killbox.Var;
-import org.academiadecodigo.secondrow.killbox.maps.Maps;
+import org.academiadecodigo.secondrow.killbox.maps.Map;
 
 
 public class Player implements Movable, Collidable, KeyboardHandler {
@@ -59,12 +59,13 @@ public class Player implements Movable, Collidable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
     }
 
-    public void checkUpdate(Maps map) {
+    public void checkUpdate(Map map) {
         dx = 0;
         dy = -jumpInterval;
 
-        dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ? dx + 3 : dx;
-        dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - 3 : dx;
+        dx = (keyD && player.getX() < Var.PADDING - Var.WALL_PADDING + Var.WIDTH - Var.PLAYER_WIDTH) ?
+                dx + Var.PLAYER_VELOCITY : dx;
+        dx = (keyA && player.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - Var.PLAYER_VELOCITY : dx;
 
         collide(map);
 
@@ -137,7 +138,7 @@ public class Player implements Movable, Collidable, KeyboardHandler {
     }
 
     @Override
-    public void collide(Maps map) {
+    public void collide(Map map) {
 
         for (int i = 0; i < map.getPlatforms().length; i++) {
 

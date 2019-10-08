@@ -2,7 +2,7 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.killbox.maps.Maps;
+import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
 
 public class Game {
@@ -26,9 +26,9 @@ public class Game {
         p1.init();
     }
 
-    public void start(Maps maps) {
+    public void start(Map map) {
         while (true) {
-            p1.checkUpdate(maps);
+            p1.checkUpdate(map);
             p1.move();
             // FIXME: 2019-10-06 FPS
             try {

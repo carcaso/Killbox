@@ -6,7 +6,7 @@ import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
-public abstract class Maps {
+public abstract class Map {
 
     Enemy[] enemy;
     Platform[] platforms;

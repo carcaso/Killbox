@@ -11,4 +11,5 @@ public class Var {
     public static final int PLAYER_HEIGHT = 40;
     public static final int PLAYER_WIDTH = 20;
     public static final int PLAYER_JUMP_HEIGHT = PLAYER_HEIGHT * 3;
+    public static final int PLAYER_VELOCITY = 3;
 }
