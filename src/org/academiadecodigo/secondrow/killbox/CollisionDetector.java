@@ -13,47 +13,59 @@ public class CollisionDetector {
         this.map = map;
     }
 
-
-    public boolean[] check() {
+    /**
+     * Checks collision with Platforms
+     * @return array of "if side is touching platform" top, bottom, right, left.
+     */
+    public boolean[] checkCollisionWithPlatforms() {
         boolean isLanding = false;
         boolean isBumpingHead = false;
         boolean isBumpingRight = false;
-        // TODO: 08/10/2019 do isBumpingLeft
+        boolean isBumpingLeft = false;
+
         for (int i = 0; i < map.getPlatforms().length; i++) {
 
+            // Auxiliary variables to checkCollisionWithPlatforms collision
             int playerStartX = player.getX();
             int playerStartY = player.getY();
-
             int playerEndX = player.getX() + Var.PLAYER_WIDTH;
             int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
             int objectStartX = map.getPlatform(i).getX();
             int objectStartY = map.getPlatform(i).getY();
-
             int objectEndX = map.getPlatform(i).getX() + map.getPlatform(i).getWidth();
             int objectEndY = map.getPlatform(i).getY() + map.getPlatform(i).getHeight();
 
-            if ((playerStartX >= objectStartX && playerEndX <= objectEndX)) {
+
+            if ((playerEndX > objectStartX && playerStartX < objectEndX)) {
 
                 if (playerEndY == objectStartY) {
-                    //System.out.println("LANDING AT X: " + player.getX() + " AND Y: " + player.getY());
                     isLanding = true;
                 }
 
                 if (playerStartY == objectEndY) {
-                    //System.out.println("BUMPED HEAD AT X: " + player.getX() + " AND Y: " + player.getY());
                     isBumpingHead = true;
                 }
             }
-            if (playerStartY >= objectStartY && playerEndY <= objectEndY) {
-                if (playerEndX == objectStartY) {
-                    //System.out.println("BUMPED RIGHT AT X: " + player.getX() + " AND Y: " + player.getY());
+
+            // Checks if player is in between a platform and sees if height is the same.
+            if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
+                    || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
+                if (playerEndX == objectStartX) {
                     isBumpingRight = true;
+                }
+
+                if (playerStartX == objectEndX) {
+                    isBumpingLeft = true;
                 }
             }
         }
 
-        boolean[] ret = {isBumpingHead, isLanding, isBumpingRight};
+        boolean[] ret = {isBumpingHead, isLanding, isBumpingRight, isBumpingLeft};
         return ret;
     }
+
+    // TODO: 08/10/2019 collision with key
+
+    // TODO: 08/10/2019 collision with door
 }

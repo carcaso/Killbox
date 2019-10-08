@@ -12,11 +12,11 @@ import org.academiadecodigo.secondrow.killbox.Var;
 public class Player implements Movable, KeyboardHandler {
 
     private Rectangle playerAvatar;
-    private Keyboard kbd;
+    private Keyboard keyboard;
 
 
     // Keybinds for playing movement
-    private boolean keyD, keyA, keyW, keySpace;
+    private boolean keyD, keyA, keySpace;
     private boolean isJumping;
     private boolean boosted;
 
@@ -34,7 +34,7 @@ public class Player implements Movable, KeyboardHandler {
 
     public Player(boolean specialJump) {
         this.specialJump = specialJump;
-        this.kbd = new Keyboard(this);
+        this.keyboard = new Keyboard(this);
         playerAvatar = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
     }
 
@@ -54,6 +54,10 @@ public class Player implements Movable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
     }
 
+    /**
+     * Checks if user is clicking controls and if Player can go that way
+     * @param collisionDetector Class for collision detection
+     */
     public void update(CollisionDetector collisionDetector) {
         dx = 0;
         dy = -jumpInterval;
@@ -62,28 +66,33 @@ public class Player implements Movable, KeyboardHandler {
                 dx + Var.PLAYER_VELOCITY : dx;
         dx = (keyA && playerAvatar.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - Var.PLAYER_VELOCITY : dx;
 
-        boolean[] bumps = collisionDetector.check();
-        boolean isBumpingHead = bumps[0];
-        boolean isLanding = bumps[1];
+        boolean[] bumps = collisionDetector.checkCollisionWithPlatforms();
+        boolean isBumpingTop = bumps[0];
+        boolean isBumpingBottom = bumps[1];
         boolean isBumpingRight = bumps[2];
+        boolean isBumpingLeft = bumps[3];
 
-        if (playerAvatar.getY() >= maxY || isLanding) {
+        if (playerAvatar.getY() >= maxY || isBumpingBottom) {
             dy = 0;
         }
 
+        if(isBumpingLeft || isBumpingRight) {
+            dx = 0;
+        }
+
         if (keySpace || boosted) {
-            if ((playerAvatar.getY() == maxY || isLanding) && !boosted) {
+            if ((playerAvatar.getY() == maxY || isBumpingBottom) && !boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT;
                 isJumping = true;
             }
 
-            if ((playerAvatar.getY() == maxY  || isLanding) && boosted) {
+            if ((playerAvatar.getY() == maxY  || isBumpingBottom) && boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
                 isJumping = true;
             }
 
             if (isJumping || boosted) {
-                if (maxJump <= 0 || isBumpingHead || playerAvatar.getY() == minY) {
+                if (maxJump <= 0 || isBumpingTop || playerAvatar.getY() == minY) {
                     isJumping = false;
                     boosted = false;
                     maxJump = 0;
@@ -143,7 +152,6 @@ public class Player implements Movable, KeyboardHandler {
         }
     }
 
-    // TODO: 2019-10-06 Move this to draw or something else
     @Override
     public void move() {
         playerAvatar.translate(dx, dy);
@@ -159,7 +167,7 @@ public class Player implements Movable, KeyboardHandler {
         KeyboardEvent keybind = new KeyboardEvent();
         keybind.setKey(key);
         keybind.setKeyboardEventType(type);
-        kbd.addEventListener(keybind);
+        keyboard.addEventListener(keybind);
     }
 
     public boolean isDead() {

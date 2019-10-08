@@ -25,8 +25,6 @@ public class Game {
 
         p1 = new Player(true);
         p1.init();
-
-
     }
 
     public void start(Map map) {
@@ -35,9 +33,8 @@ public class Game {
         while (true) {
             p1.update(collisionDetector);
             p1.move();
-            // FIXME: 2019-10-06 FPS
             try {
-                Thread.sleep(1000 / Var.FPS);
+                Thread.sleep(Var.DELAY);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

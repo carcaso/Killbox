@@ -29,7 +29,6 @@ public class Platform{
 
         platform.setColor(Color.DARK_GRAY);
         platform.fill();
-
     }
 
     /**
@@ -51,7 +50,6 @@ public class Platform{
         pos = new Position(x, y);
 
         return new Rectangle(x, y, width, height);
-
     }
 
     public int getWidth() {

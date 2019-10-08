@@ -13,10 +13,12 @@ public class Level1 extends Map {
     public Level1() {
         setPlatforms(new Platform[2]);
         setKeys(new Key[1]);
-        setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30, 120), getKeys()));
 
         // Door platform
-        getPlatforms()[0] = new Platform(new Position(1085, 160), 205, 25);
+        getPlatforms()[0] = new Platform(new Position(1085, 260), 205, 25);
+        setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30,
+                getPlatforms()[0].getY() - Var.DOOR_HEIGHT), getKeys()));
+
         // middle platform
         // getPlatforms()[1] = new Platform(350, 90);
         // int x = Var.PADDING + Var.WIDTH  / 2 - width  / 2 = 10 + 640 - 175 = 475
