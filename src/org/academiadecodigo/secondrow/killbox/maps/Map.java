@@ -50,6 +50,10 @@ public abstract class Map {
         return key;
     }
 
+    public Door getdoor(){
+        return door;
+    }
+
     //Added method for get key in index
     public Key getKey(int index){
         return key[index];

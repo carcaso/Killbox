@@ -7,26 +7,28 @@ public class Key implements Collidable {
 
     private Rectangle key;
     private Position pos;
-    private boolean collide = false;
     public static final int SIZE = 15;
+    private Door door;
 
 
-    // TODO: 09/10/2019 tem de receber porta ( porta pára de receber keys ) 
-    public Key(Position position, Color color) {
+
+    public Key(Position position, Color color, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         key.setColor(color);
         key.fill();
+        this.door = door;
     }
 
     /**
      * Default constructor
      * */
-    public Key(Position position) {
+    public Key(Position position, Door door ) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         key.setColor(Color.YELLOW);
         key.fill();
+        this.door = door;
     }
 
     // Getters
@@ -49,7 +51,9 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision(){
-        // TODO: 09/10/2019 must open door
         key.delete();
+        door.openDoor();
     }
+
+
 }

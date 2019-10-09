@@ -1,5 +1,6 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
+import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.Var;
 
@@ -9,7 +10,7 @@ public class Door {
     private Key[] keys;
     private boolean open;
 
-    public Door(Position position, Key[] keys) {
+    public Door(Position position) {
         open = false;
         pos = position;
         this.keys = keys;
@@ -20,4 +21,15 @@ public class Door {
     public boolean isOpen() {
         return open;
     }
+
+    public void openDoor(){
+        if(!open) {
+            door.setColor(Color.ORANGE);
+            open = true;
+        }
+
+    }
+
+
+
 }

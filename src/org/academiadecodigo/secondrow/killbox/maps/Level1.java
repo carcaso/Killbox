@@ -20,7 +20,7 @@ public class Level1 extends Map {
         // Door platform
         getPlatforms()[0] = new Platform(new Position(1085, 260), 205, 25);
         setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30,
-                getPlatforms()[0].getY() - Var.DOOR_HEIGHT), getKeys()));
+                getPlatforms()[0].getY() - Var.DOOR_HEIGHT)));
 
         // middle platform
         // getPlatforms()[1] = new Platform(350, 90);
@@ -32,7 +32,7 @@ public class Level1 extends Map {
 
         // Create a key 5 pixels above platform and in the center of the screen
         getKeys()[0] = new Key(new Position(Var.WIDTH / 2 - Key.SIZE / 2 + Var.PADDING,
-                Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE));
+                Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE), getDoor());
 
 
         getEnemy()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
