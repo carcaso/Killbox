@@ -2,9 +2,8 @@ package org.academiadecodigo.secondrow.killbox.objects;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.killbox.CollisionDetector;
 
-public class Key {
+public class Key implements Collidable {
 
     private Rectangle key;
     private Position pos;
@@ -12,6 +11,7 @@ public class Key {
     public static final int SIZE = 15;
 
 
+    // TODO: 09/10/2019 tem de receber porta ( porta pára de receber keys ) 
     public Key(Position position, Color color) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -31,27 +31,25 @@ public class Key {
 
     // Getters
     public int getX(){
-        return key.getX();
+        return pos.getX();
     }
 
     public int getY(){
-        return key.getY();
+        return pos.getY();
     }
 
     public int getWidth(){
-        return key.getWidth();
+        return SIZE;
     }
 
-    public int getHeigth(){
-        return key.getHeight();
+    public int getHeight(){
+        return SIZE;
     }
 
-    /**
-     * None used methods
-     * */
 
-
-    public void setCollide(){
+    @Override
+    public void performCollision(){
+        // TODO: 09/10/2019 must open door
         key.delete();
     }
 }

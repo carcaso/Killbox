@@ -1,7 +1,10 @@
 package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.killbox.maps.Map;
+import org.academiadecodigo.secondrow.killbox.objects.Collidable;
+import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
+import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 public class CollisionDetector {
 
@@ -17,27 +20,25 @@ public class CollisionDetector {
      * Checks collision with Platforms
      * @return array of "if side is touching platform" top, bottom, right, left.
      */
-    public boolean[] checkCollisionWithPlatforms() {
+    public boolean[] checkCollision(Platform[] objects) {
         boolean isLanding = false;
         boolean isBumpingHead = false;
         boolean isBumpingRight = false;
         boolean isBumpingLeft = false;
 
-        //PLayerInformation
-        int playerStartX = player.getX();
-        int playerStartY = player.getY();
-        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
+        for (int i = 0; i < objects.length; i++) {
+            //PLayerInformation
+            int playerStartX = player.getX();
+            int playerStartY = player.getY();
+            int playerEndX = player.getX() + Var.PLAYER_WIDTH;
+            int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-        for (int i = 0; i < map.getPlatforms().length; i++) {
+            //Object information
+            int objectStartX = objects[i].getX();
+            int objectStartY = objects[i].getY();
+            int objectEndX = objects[i].getX() + objects[i].getWidth();
+            int objectEndY = objects[i].getY() + objects[i].getHeight();
 
-            //PLatform information
-            int objectStartX = map.getPlatform(i).getX();
-            int objectStartY = map.getPlatform(i).getY();
-            int objectEndX = map.getPlatform(i).getX() + map.getPlatform(i).getWidth();
-            int objectEndY = map.getPlatform(i).getY() + map.getPlatform(i).getHeight();
-
-            //parentesis a mais removido
             if ((playerEndX > objectStartX && playerStartX < objectEndX)) {
 
                 if (playerEndY == objectStartY) {
@@ -53,54 +54,57 @@ public class CollisionDetector {
             if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
                     || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
                 if (playerEndX == objectStartX) {
+                    System.out.println("right");
                     isBumpingRight = true;
                 }
 
                 if (playerStartX == objectEndX) {
+                    System.out.println("left");
                     isBumpingLeft = true;
                 }
             }
-        }
 
-        /**
-         * Added the new method checkColision with key
-         * */
-        for(int i=0; i< map.getKeys().length; i++){
-
-
-            // Size of the key
-            int keyStartX = map.getKey(i).getX();
-            int keyStartY = map.getKey(i).getY();
-            int keyEndX = map.getKey(i).getX()+ map.getKey(i).getWidth();
-            int keyEndY = map.getKey(i).getY()+map.getKey(i).getHeigth();
-
-            if (playerEndX > keyStartX && playerStartX < keyEndX){
-
-                if(playerEndY == keyStartY){
-                    map.getKey(i).setCollide();
-                }
-
-                if(playerStartY == keyEndY){
-                    map.getKey(i).setCollide();
-                }
-            }
-
-            // Checks if player is in between a platform and sees if height is the same.
-            if ((playerStartY >= keyStartY && playerStartY <= keyEndY)
-                    || (playerEndY >= keyStartY && playerEndY <= keyEndY)) {
-                if (playerEndX == keyStartX) {
-                    map.getKey(i).setCollide();
-                }
-
-                if (playerStartX == keyEndX) {
-                    map.getKey(i).setCollide();
-                }
+            if(isBumpingHead || isBumpingLeft || isBumpingRight || isLanding) {
+                objects[i].performCollision();
             }
 
         }
 
         boolean[] ret = {isBumpingHead, isLanding, isBumpingRight, isBumpingLeft};
         return ret;
+    }
+
+    /**
+     * to check collision with keys and enemies.
+     * @param objects
+     */
+    public void checkCollision(Collidable[] objects) {
+        int playerStartX = player.getX();
+        int playerStartY = player.getY();
+        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
+        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
+
+        for (int i = 0; i < objects.length; i++) {
+
+            //Object information
+            int objectStartX = objects[i].getX();
+            int objectStartY = objects[i].getY();
+            int objectEndX = objects[i].getX() + objects[i].getWidth();
+            int objectEndY = objects[i].getY() + objects[i].getHeight();
+
+            if (
+                    ( objectStartX >= playerStartX && objectStartX <= playerEndX
+                            && objectStartY >= playerStartY && objectStartY <= playerEndY )
+                    || ( objectEndX >= playerStartX && objectEndX <= playerEndX
+                            && objectStartY >= playerStartY && objectStartY <= playerEndY )
+                    || ( objectEndY >= playerStartX && objectEndY <= playerStartX
+                            && objectStartX >= playerStartX && objectStartX <= playerEndX)
+            ) {
+
+                objects[i].performCollision();
+            }
+
+        }
     }
 
 
