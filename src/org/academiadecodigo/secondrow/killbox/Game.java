@@ -33,6 +33,10 @@ public class Game {
         while (true) {
             p1.update(collisionDetector.checkCollision(map.getPlatforms()));
             p1.move();
+
+            map.getEnemy()[0].update();
+            map.getEnemy()[0].move();
+
             collisionDetector.checkCollision(map.getKeys());
 
             try {
