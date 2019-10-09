@@ -20,7 +20,7 @@ public class CollisionDetector {
      * Checks collision with Platforms
      * @return array of "if side is touching platform" top, bottom, right, left.
      */
-    public boolean[] checkCollisionPla(Platform[] objects) {
+    public boolean[] checkCollision(Platform[] objects) {
         boolean isLanding = false;
         boolean isBumpingHead = false;
         boolean isBumpingRight = false;
