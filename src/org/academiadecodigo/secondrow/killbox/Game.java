@@ -38,6 +38,7 @@ public class Game {
             map.getEnemy()[0].move();
 
             collisionDetector.checkCollision(map.getKeys());
+            collisionDetector.checkCollision(map.getDoor());
 
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();
@@ -48,5 +49,7 @@ public class Game {
                 e.printStackTrace();
             }
         }
+
+
     }
 }
