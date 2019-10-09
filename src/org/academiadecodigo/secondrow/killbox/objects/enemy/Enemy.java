@@ -6,9 +6,29 @@ import org.academiadecodigo.secondrow.killbox.objects.Movable;
 
 public class Enemy implements Movable, Collidable {
 
+    @Override
+    public void performCollision() {
+
+    }
 
     @Override
-    public void collide(Map map) {
+    public int getWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getHeight() {
+        return 0;
+    }
+
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
     }
 
     @Override

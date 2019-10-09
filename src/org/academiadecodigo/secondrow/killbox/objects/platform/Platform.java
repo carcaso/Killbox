@@ -3,10 +3,11 @@ package org.academiadecodigo.secondrow.killbox.objects.platform;
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.Var;
+import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 
-public class Platform{
+public class Platform implements Collidable {
 
     private Position pos;
     private int width;
@@ -50,6 +51,11 @@ public class Platform{
         pos = new Position(x, y);
 
         return new Rectangle(x, y, width, height);
+    }
+
+    @Override
+    public void performCollision() {
+        // This method is not used.
     }
 
     public int getWidth() {

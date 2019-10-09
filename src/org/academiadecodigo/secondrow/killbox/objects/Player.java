@@ -54,11 +54,7 @@ public class Player implements Movable, KeyboardHandler {
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
     }
 
-    /**
-     * Checks if user is clicking controls and if Player can go that way
-     * @param collisionDetector Class for collision detection
-     */
-    public void update(CollisionDetector collisionDetector) {
+    public void update(boolean[] bumps) {
         dx = 0;
         dy = -jumpInterval;
 
@@ -66,7 +62,6 @@ public class Player implements Movable, KeyboardHandler {
                 dx + Var.PLAYER_VELOCITY : dx;
         dx = (keyA && playerAvatar.getX() > Var.PADDING + Var.WALL_PADDING) ? dx - Var.PLAYER_VELOCITY : dx;
 
-        boolean[] bumps = collisionDetector.checkCollisionWithPlatforms();
         boolean isBumpingTop = bumps[0];
         boolean isBumpingBottom = bumps[1];
         boolean isBumpingRight = bumps[2];

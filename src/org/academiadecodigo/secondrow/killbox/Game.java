@@ -31,8 +31,10 @@ public class Game {
         collisionDetector = new CollisionDetector(map, p1);
 
         while (true) {
-            p1.update(collisionDetector);
+            p1.update(collisionDetector.checkCollision(map.getPlatforms()));
             p1.move();
+            collisionDetector.checkCollision(map.getKeys());
+
             try {
                 Thread.sleep(Var.DELAY);
             } catch (InterruptedException e) {
