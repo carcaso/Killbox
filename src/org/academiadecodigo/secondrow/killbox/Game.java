@@ -39,6 +39,9 @@ public class Game {
 
             collisionDetector.checkCollision(map.getKeys());
 
+            map.getEnemy()[0].update();
+            map.getEnemy()[0].move();
+
             try {
                 Thread.sleep(Var.DELAY);
             } catch (InterruptedException e) {
