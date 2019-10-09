@@ -18,36 +18,47 @@ public abstract class Map {
         return enemy;
     }
 
-    public Platform[] getPlatforms() {
-        return platforms;
-    }
-
     public JumpBox[] getJumpBoxes() {
         return jumpBoxes;
-    }
-
-    public Platform getPlatform(int index) {
-        return platforms[index];
     }
 
     public Door getDoor() {
         return door;
     }
 
-    public Key[] getKeys() {
-        return key;
-    }
-
     public void setEnemy(Enemy[] enemy) {
         this.enemy = enemy;
     }
 
-    public void setPlatforms(Platform[] platforms) {
-        this.platforms = platforms;
-    }
-
     public void setJumpBoxes(JumpBox[] jumpBoxes) {
         this.jumpBoxes = jumpBoxes;
+    }
+
+
+    //Return the Array Platfrom
+    public Platform[] getPlatforms() {
+        return platforms;
+    }
+
+    //Return a platfrom by the index
+    public Platform getPlatform(int index) {
+        return platforms[index];
+    }
+
+    //Retrun the Array Keys
+    public Key[] getKeys() {
+        return key;
+    }
+
+    //Added method for get key in index
+    public Key getKey(int index){
+        return key[index];
+    }
+
+
+    // Setteres
+    public void setPlatforms(Platform[] platforms) {
+        this.platforms = platforms;
     }
 
     public void setDoor(Door door) {
