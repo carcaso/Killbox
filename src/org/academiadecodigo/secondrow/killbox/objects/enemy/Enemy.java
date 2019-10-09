@@ -35,4 +35,8 @@ public class Enemy implements Movable, Collidable {
     public void move() {
 
     }
+
+    public void update(){}
+
+
 }

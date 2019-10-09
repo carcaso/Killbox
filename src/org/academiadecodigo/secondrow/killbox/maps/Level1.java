@@ -4,6 +4,8 @@ import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Door;
 import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
+import org.academiadecodigo.secondrow.killbox.objects.enemy.FixedPathEnemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 public class Level1 extends Map {
@@ -13,6 +15,7 @@ public class Level1 extends Map {
     public Level1() {
         setPlatforms(new Platform[2]);
         setKeys(new Key[1]);
+        setEnemy(new Enemy[1]);
 
         // Door platform
         getPlatforms()[0] = new Platform(new Position(1085, 260), 205, 25);
@@ -30,6 +33,10 @@ public class Level1 extends Map {
         // Create a key 5 pixels above platform and in the center of the screen
         getKeys()[0] = new Key(new Position(Var.WIDTH / 2 - Key.SIZE / 2 + Var.PADDING,
                 Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE));
+
+
+        getEnemy()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
+                                            getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());
 
     }
 
