@@ -14,7 +14,6 @@ public class Key implements Collidable {
     private Text winMessage;
 
 
-
     public Key(Position position, Color color, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -25,8 +24,8 @@ public class Key implements Collidable {
 
     /**
      * Default constructor
-     * */
-    public Key(Position position, Door door ) {
+     */
+    public Key(Position position, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         key.setColor(Color.YELLOW);
@@ -35,25 +34,25 @@ public class Key implements Collidable {
     }
 
     // Getters
-    public int getX(){
+    public int getX() {
         return pos.getX();
     }
 
-    public int getY(){
+    public int getY() {
         return pos.getY();
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return SIZE;
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return SIZE;
     }
 
 
     @Override
-    public void performCollision(){
+    public void performCollision() {
         key.delete();
         door.openDoor();
     }
