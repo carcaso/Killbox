@@ -41,6 +41,14 @@ public class Game {
             map.getEnemies()[0].move();
             map.getEnemies()[1].shot(p1.getX(), p1.getY());
 
+            /*
+            if (p1.isDead()) {
+
+                map.delete(map.getEnemies(), map.getPlatforms(), map.getJumpBoxes(), map.getDoor(), map.getKeys());
+
+            }
+            */
+
             try {
                 Thread.sleep(Var.DELAY);
             } catch (InterruptedException e) {

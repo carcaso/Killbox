@@ -7,9 +7,18 @@ import org.academiadecodigo.secondrow.killbox.CollisionDetector;
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
+import org.academiadecodigo.secondrow.killbox.objects.Player;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 
 public class Enemy implements Movable, Collidable {
+
+    private Player player;
+
+
+    public void Enemy(Player player) {
+        this.player = player;
+    }
+
 
     @Override
     public void performCollision() {
@@ -21,7 +30,7 @@ public class Enemy implements Movable, Collidable {
         text.setColor(Color.RED);
         text.draw();
         text.grow(150, 50);
-
+        //player.setDead(true);
     }
 
     @Override

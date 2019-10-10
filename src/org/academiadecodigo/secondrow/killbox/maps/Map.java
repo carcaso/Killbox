@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox.maps;
 
 import org.academiadecodigo.secondrow.killbox.objects.Door;
 import org.academiadecodigo.secondrow.killbox.objects.Key;
+import org.academiadecodigo.secondrow.killbox.objects.Player;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
@@ -70,7 +71,7 @@ public abstract class Map {
         this.key = key;
     }
 
-    public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door[] doors, Key[] keys){
+    public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door door, Key[] keys){
 
         for (int i = 0; i < enemies.length; i++) {
             enemies[i].delete();
@@ -84,12 +85,12 @@ public abstract class Map {
             jumpBoxes[i].delete();
         }
 
-        for (int i = 0; i < doors.length; i++) {
-            doors[i].delete();
-        }
+            door.delete();
 
         for (int i = 0; i < keys.length; i++) {
             keys[i].delete();
         }
     }
+
+
 }
