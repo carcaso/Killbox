@@ -35,8 +35,9 @@ public class Game {
             p1.move();
 
             collisionDetector.checkCollision(map.getKeys());
-            collisionDetector.checkCollisionEnemie(map.getEnemy());
+            collisionDetector.checkCollisionEnemies(map.getEnemy());
             collisionDetector.checkCollision(map.getDoor());
+            collisionDetector.checkCollision(map.getJumpBoxes());
 
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();

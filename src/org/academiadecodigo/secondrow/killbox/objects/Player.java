@@ -178,6 +178,8 @@ public class Player implements Movable, KeyboardHandler {
         this.dead = x;
     }
 
-
+    public void setBoosted(boolean boost) {
+        this.boosted = boost;
+    }
 
 }
