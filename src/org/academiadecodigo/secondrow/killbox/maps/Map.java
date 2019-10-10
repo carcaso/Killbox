@@ -8,6 +8,7 @@ import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 public abstract class Map {
 
+    ////////////////////change enemy to enemies
     Enemy[] enemy;
     Platform[] platforms;
     JumpBox[] jumpBoxes;

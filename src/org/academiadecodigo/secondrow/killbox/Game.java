@@ -34,14 +34,13 @@ public class Game {
             p1.update(collisionDetector.checkCollision(map.getPlatforms()));
             p1.move();
 
-            map.getEnemy()[0].update();
-            map.getEnemy()[0].move();
-
             collisionDetector.checkCollision(map.getKeys());
+            collisionDetector.checkCollisionEnemie(map.getEnemy());
             collisionDetector.checkCollision(map.getDoor());
 
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();
+            map.getEnemy()[1].shot(p1.getX(), p1.getY());
 
             try {
                 Thread.sleep(Var.DELAY);
