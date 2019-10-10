@@ -11,5 +11,9 @@ public class JumpBox extends Platform {
 
     public void boost() {
     }
+
+    public void delete(){
+        super.delete();
+    }
 }
 

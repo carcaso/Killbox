@@ -20,4 +20,7 @@ public class Door {
     public boolean isOpen() {
         return open;
     }
+
+    public void delete(){door.delete();}
+
 }

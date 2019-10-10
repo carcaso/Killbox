@@ -168,16 +168,4 @@ public class Player implements Movable, KeyboardHandler {
         keyboard.addEventListener(keybind);
     }
 
-    public boolean isDead() {
-
-        return dead;
-    }
-
-    public void setDead(boolean x){
-
-        this.dead = x;
-    }
-
-
-
 }

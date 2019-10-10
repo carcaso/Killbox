@@ -160,6 +160,12 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         return pos.getY();
     }
 
+    @Override
+    public void delete(){
+
+        enemy.delete();
+
+    }
 
 }
 

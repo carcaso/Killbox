@@ -36,10 +36,10 @@ public class Level1 extends Map {
                 Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE));
 
 
-        getEnemy()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
+        getEnemies()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
                                             getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());
 
-        getEnemy()[1] = new LaserEnemy(475, 100);
+        getEnemies()[1] = new LaserEnemy(475, 100);
 
 
     }

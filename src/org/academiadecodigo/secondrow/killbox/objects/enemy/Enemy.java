@@ -47,9 +47,11 @@ public class Enemy implements Movable, Collidable {
 
     }
 
+    ///////////////////////////////////////////////////////////////////
+
     public void update(){}
 
+    public void delete(){}
 
-    //added
     public void shot(int playerX, int playerY){}
 }

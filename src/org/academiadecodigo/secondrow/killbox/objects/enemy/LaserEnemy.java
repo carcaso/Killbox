@@ -1,6 +1,7 @@
 package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.*;
+import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
@@ -67,6 +68,13 @@ public class LaserEnemy extends Enemy implements Collidable {
 
     }
 
+    @Override
+    public void delete(){
+
+        enemy.delete();
+        shot.delete();
+
+    }
 
 
 
@@ -78,8 +86,20 @@ public class LaserEnemy extends Enemy implements Collidable {
             counter++;
             return;
         }
+
         if(counter == 900){shot.delete();}
-        shot = new Line(pos.getX() + (width/2), pos.getY() + (height/2), playerX, playerY);
+
+        int inicialX = pos.getX() + (width/2);
+        int inicialY = pos.getY() + (height/2);
+
+        int finalY = Var.HEIGHT - Var.WALL_PADDING + 10;
+
+        int finalX = playerX + Var.PLAYER_WIDTH;
+
+
+        //ADD line-platform collision and ADD player-line collision and ADD don't shot when below platform
+
+        shot = new Line( inicialX, inicialY, finalX, finalY);
         shot.setColor(Color.GREEN);
         shot.draw();
         shotTaken = true;

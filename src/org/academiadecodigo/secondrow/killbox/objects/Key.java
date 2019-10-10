@@ -46,10 +46,11 @@ public class Key implements Collidable {
         return SIZE;
     }
 
+    public void delete(){key.delete();}
 
     @Override
     public void performCollision(){
         // TODO: 09/10/2019 must open door
-        key.delete();
+        delete();
     }
 }

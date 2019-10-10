@@ -74,4 +74,5 @@ public class Platform implements Collidable {
         return platform.getY();
     }
 
+    public void delete(){platform.delete();}
 }

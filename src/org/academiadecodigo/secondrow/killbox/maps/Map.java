@@ -15,7 +15,7 @@ public abstract class Map {
     Door door;
     Key[] key;
 
-    public Enemy[] getEnemy() {
+    public Enemy[] getEnemies() {
         return enemy;
     }
 
@@ -68,5 +68,28 @@ public abstract class Map {
 
     public void setKeys(Key[] key) {
         this.key = key;
+    }
+
+    public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door[] doors, Key[] keys){
+
+        for (int i = 0; i < enemies.length; i++) {
+            enemies[i].delete();
+        }
+
+        for (int i = 0; i < platforms.length; i++) {
+            platforms[i].delete();
+        }
+
+        for (int i = 0; i < jumpBoxes.length; i++) {
+            jumpBoxes[i].delete();
+        }
+
+        for (int i = 0; i < doors.length; i++) {
+            doors[i].delete();
+        }
+
+        for (int i = 0; i < keys.length; i++) {
+            keys[i].delete();
+        }
     }
 }
