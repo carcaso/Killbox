@@ -58,12 +58,10 @@ public class CollisionDetector {
             if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
                     || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
                 if (playerEndX == objectStartX) {
-                    System.out.println("right");
                     isBumpingRight = true;
                 }
 
                 if (playerStartX == objectEndX) {
-                    System.out.println("left");
                     isBumpingLeft = true;
                 }
             }
@@ -97,14 +95,25 @@ public class CollisionDetector {
         int objectEndY = object.getY() + object.getHeight();
 
         if (
-                (objectStartX >= playerStartX && objectStartX <= playerEndX
+                ((playerStartX >= objectStartX && playerStartX <= objectEndX
+                        && playerStartY >= objectStartY && playerStartY <= objectEndY)
+
+                        || (playerEndX >= objectStartX && playerEndX <= objectEndX
+                        && playerStartY >= objectStartY && playerStartY <= objectEndY)
+                        || (playerStartX >= objectStartX && playerStartX <= objectEndX
+                        && playerEndY >= objectStartY && playerEndY <= objectEndY)
+                        || (playerEndX >= objectStartX && playerEndX <= objectEndX
+                        && playerEndY >= objectStartY && playerEndY <= objectEndY))
+
+                        || ((objectStartX >= playerStartX && objectStartX <= playerEndX
                         && objectStartY >= playerStartY && objectStartY <= playerEndY)
 
                         || (objectEndX >= playerStartX && objectEndX <= playerEndX
                         && objectStartY >= playerStartY && objectStartY <= playerEndY)
-
-                        || (objectEndY >= playerStartX && objectEndY <= playerStartX
-                        && objectStartX >= playerStartX && objectStartX <= playerEndX)
+                        || (objectStartX >= playerStartX && objectStartX <= playerEndX
+                        && objectEndY >= playerStartY && objectEndY <= playerEndY)
+                        || (objectEndX >= playerStartX && objectEndX <= playerEndX
+                        && objectEndY >= playerStartY && objectEndY <= playerEndY))
 
         ) {
 

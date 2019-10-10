@@ -47,6 +47,8 @@ public class Platform implements Collidable {
         platform = createPlatformInCenter(width, height);
         platform.setColor(Color.DARK_GRAY);
         platform.fill();
+
+        System.out.println("Platform: (x,y) (" + getX() + "," + getY() + ")" + height);
     }
 
     private Rectangle createPlatformInCenter(int widthInCells, int heightInCells) {

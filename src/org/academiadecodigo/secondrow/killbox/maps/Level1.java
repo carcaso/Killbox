@@ -4,6 +4,7 @@ import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Door;
 import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.killbox.objects.enemy.Bomb;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.FixedPathEnemy;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.LaserEnemy;
@@ -42,7 +43,7 @@ public class Level1 extends Map {
         getEnemy()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
                 getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());
 
-        getEnemy()[1] = new LaserEnemy(475, 100);
+        getEnemy()[1] = new Bomb(700, 200);
 
 
     }
