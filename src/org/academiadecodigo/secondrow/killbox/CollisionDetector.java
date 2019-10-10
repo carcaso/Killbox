@@ -54,19 +54,12 @@ public class CollisionDetector {
             if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
                     || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
                 if (playerEndX == objectStartX) {
-                    System.out.println("right");
                     isBumpingRight = true;
                 }
 
                 if (playerStartX == objectEndX) {
-                    System.out.println("left");
                     isBumpingLeft = true;
                 }
-            }
-
-            /* **************** Unecessary if **************** */
-            if(isBumpingHead || isBumpingLeft || isBumpingRight || isLanding) {
-                objects[i].performCollision();
             }
 
         }
@@ -79,7 +72,7 @@ public class CollisionDetector {
      * to check collision with keys and enemies.
      * @param objects
      */
-    public void checkCollision(Collidable[] objects) {
+    public void checkCollisionKey(Collidable[] objects) {
         int playerStartX = player.getX();
         int playerStartY = player.getY();
         int playerEndX = player.getX() + Var.PLAYER_WIDTH;
@@ -106,6 +99,10 @@ public class CollisionDetector {
             }
 
         }
+    }
+
+    public void checkCollision(Collidable door){
+
     }
 
 

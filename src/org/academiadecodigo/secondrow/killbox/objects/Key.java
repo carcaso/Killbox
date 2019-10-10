@@ -2,6 +2,8 @@ package org.academiadecodigo.secondrow.killbox.objects;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
+import org.academiadecodigo.secondrow.graphics.Text;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Key implements Collidable {
 
@@ -9,6 +11,7 @@ public class Key implements Collidable {
     private Position pos;
     public static final int SIZE = 15;
     private Door door;
+    private Text winMessage;
 
 
 

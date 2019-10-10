@@ -37,7 +37,7 @@ public class Game {
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();
 
-            collisionDetector.checkCollision(map.getKeys());
+            collisionDetector.checkCollisionKey(map.getKeys());
 
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();
