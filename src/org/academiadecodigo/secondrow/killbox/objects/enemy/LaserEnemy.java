@@ -1,8 +1,6 @@
 package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
-import org.academiadecodigo.secondrow.graphics.Color;
-import org.academiadecodigo.secondrow.graphics.Ellipse;
-import org.academiadecodigo.secondrow.graphics.Line;
+import org.academiadecodigo.secondrow.graphics.*;
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
@@ -34,10 +32,29 @@ public class LaserEnemy extends Enemy implements Collidable {
 
     }
 
-
+    @Override
+    public void performCollision() {
+      super.performCollision();
+    }
 
     @Override
-    public void collide(Map map) {
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public int getX() {
+        return pos.getX();
+    }
+
+    @Override
+    public int getY() {
+        return pos.getY();
     }
 
     @Override

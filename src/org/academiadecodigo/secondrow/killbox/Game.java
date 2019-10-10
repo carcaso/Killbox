@@ -35,10 +35,10 @@ public class Game {
             p1.move();
 
             collisionDetector.checkCollision(map.getKeys());
+            collisionDetector.checkCollisionEnemie(map.getEnemy());
 
             map.getEnemy()[0].update();
             map.getEnemy()[0].move();
-
             map.getEnemy()[1].shot(p1.getX(), p1.getY());
 
             try {

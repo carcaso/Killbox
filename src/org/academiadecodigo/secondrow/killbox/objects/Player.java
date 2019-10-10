@@ -1,6 +1,8 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
+import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
+import org.academiadecodigo.secondrow.graphics.Text;
 import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
@@ -13,6 +15,7 @@ public class Player implements Movable, KeyboardHandler {
 
     private Rectangle playerAvatar;
     private Keyboard keyboard;
+    private boolean dead;
 
 
     // Keybinds for playing movement
@@ -166,6 +169,15 @@ public class Player implements Movable, KeyboardHandler {
     }
 
     public boolean isDead() {
-        return false;
+
+        return dead;
     }
+
+    public void setDead(boolean x){
+
+        this.dead = x;
+    }
+
+
+
 }
