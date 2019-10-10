@@ -13,7 +13,7 @@ import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 public class Level1 extends Map {
 
     // TODO: 06/10/2019 Add walls to level.
-    // 2 plats, 1 jump, 1 door, 1 enemy, 1 key
+    // 2 plats, 1 jump, 1 door, 1 enemy, 1 keys
     public Level1() {
         setPlatforms(new Platform[2]);
         setKeys(new Key[1]);
@@ -21,17 +21,20 @@ public class Level1 extends Map {
         setJumpBoxes(new JumpBox[2]);
 
         // Door platform
-        getPlatforms()[0] = new Platform(new Position(1085, 260), 205, 25);
-        setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30,
+        getPlatforms()[0] = new Platform(
+                new Position(Var.PADDING + Var.WIDTH - Var.WALL_PADDING - 6 * Var.CELL_SIZE,
+                        7 * Var.CELL_SIZE),
+                6 * Var.CELL_SIZE, Var.CELL_SIZE);
+        setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 40,
                 getPlatforms()[0].getY() - Var.DOOR_HEIGHT)));
 
-        // middle platform
-        getPlatforms()[1] = new Platform(new Position(475, 325), 350, 90);
+        // middle platform<
+        getPlatforms()[1] = new Platform(Var.CELL_SIZE * 10, Var.CELL_SIZE * 2);
 
         getJumpBoxes()[0] = new JumpBox(new Position(425, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
         getJumpBoxes()[1] = new JumpBox(new Position(1025, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
 
-        // Create a key 5 pixels above platform and in the center of the screen
+        // Create a keys 5 pixels above platform and in the center of the screen
         getKeys()[0] = new Key(new Position(Var.WIDTH / 2 - Key.SIZE / 2 + Var.PADDING,
                 Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE), getDoor());
 
