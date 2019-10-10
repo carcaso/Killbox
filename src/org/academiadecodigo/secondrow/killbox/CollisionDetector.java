@@ -81,44 +81,46 @@ public class CollisionDetector {
     /**
      * to check collision with keys and enemies.
      *
-     * @param objects
+     * @param object
      */
-    public void checkCollision(Collidable[] objects) {
+    public boolean checkCollision(Collidable object) {
+
         int playerStartX = player.getX();
         int playerStartY = player.getY();
         int playerEndX = player.getX() + Var.PLAYER_WIDTH;
         int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-        for (int i = 0; i < objects.length; i++) {
+        //Object information
+        int objectStartX = object.getX();
+        int objectStartY = object.getY();
+        int objectEndX = object.getX() + object.getWidth();
+        int objectEndY = object.getY() + object.getHeight();
 
-            //Object information
-            int objectStartX = objects[i].getX();
-            int objectStartY = objects[i].getY();
-            int objectEndX = objects[i].getX() + objects[i].getWidth();
-            int objectEndY = objects[i].getY() + objects[i].getHeight();
+        if (
+                (objectStartX >= playerStartX && objectStartX <= playerEndX
+                        && objectStartY >= playerStartY && objectStartY <= playerEndY)
 
-            if (
-                    (objectStartX >= playerStartX && objectStartX <= playerEndX
-                            && objectStartY >= playerStartY && objectStartY <= playerEndY)
-                            || (objectEndX >= playerStartX && objectEndX <= playerEndX
-                            && objectStartY >= playerStartY && objectStartY <= playerEndY)
-                            || (objectEndY >= playerStartX && objectEndY <= playerStartX
-                            && objectStartX >= playerStartX && objectStartX <= playerEndX)
-            ) {
+                        || (objectEndX >= playerStartX && objectEndX <= playerEndX
+                        && objectStartY >= playerStartY && objectStartY <= playerEndY)
 
-                objects[i].performCollision();
+                        || (objectEndY >= playerStartX && objectEndY <= playerStartX
+                        && objectStartX >= playerStartX && objectStartX <= playerEndX)
 
-                if (objects[i] instanceof JumpBox) {
-                    player.setBoosted(true);
-                }
-                System.out.println("\nhit");
+        ) {
+
+            object.performCollision();
+
+            if (object instanceof JumpBox) {
+                player.setBoosted(true);
             }
-
+            return true;
         }
+        return false;
     }
 
-    public void checkCollisionEnemies(Enemy[] enemies) {
 
+
+    /*public void checkCollisionEnemies(Enemy[] enemies) {
 
         int playerStartX = player.getX();
         int playerStartY = player.getY();
@@ -165,9 +167,9 @@ public class CollisionDetector {
                 }
             }
         }
-    }
+    }*/
 
-    public void checkCollision(Collidable object) {
+    public void checkCollisions(Collidable object) {
 
         //Player information
         int playerStartX = player.getX();
