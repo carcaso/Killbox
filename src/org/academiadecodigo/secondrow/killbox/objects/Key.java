@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox.objects;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Key implements Collidable {
 
@@ -9,14 +10,15 @@ public class Key implements Collidable {
     private Position pos;
     public static final int SIZE = 15;
     private Door door;
+    private Picture keyPicture;
 
 
     public Key(Position position, Color color, Door door) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-        key.setColor(color);
-        key.fill();
         this.door = door;
+        keyPicture = new Picture(pos.getX(), pos.getY(), "/Users/codecadet/Desktop/2D-Platform/key2.png");
+        key.draw();
+
     }
 
     /**
@@ -24,10 +26,11 @@ public class Key implements Collidable {
      */
     public Key(Position position, Door door) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-        key.setColor(Color.YELLOW);
-        key.fill();
         this.door = door;
+        keyPicture = new Picture(pos.getX(), pos.getY(), "/Users/codecadet/Desktop/2D-Platform/key2.png");
+        keyPicture.draw();
+
+
     }
 
     // Getters
@@ -50,7 +53,8 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision() {
-        key.delete();
+        //key.delete();
+        keyPicture.delete();
         door.openDoor();
     }
 

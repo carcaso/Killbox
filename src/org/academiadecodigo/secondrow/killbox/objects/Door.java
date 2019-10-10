@@ -9,16 +9,15 @@ import org.academiadecodigo.secondrow.pictures.Picture;
 public class Door implements Collidable {
     private Rectangle door;
     private Position pos;
-    private Key[] keys;
     private boolean open;
-    //private Picture winPicture = new Picture(625, 350,"/Users/codecadet/Desktop/youwin.png");
-    private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
-    private Text winMessage = new Text(625, 350, "You won!");
+    private Picture winPicture = new Picture(400, 125,"/Users/codecadet/Desktop/2D-Platform/youwin.png" +
+            "");
+    //private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
+    //private Text winMessage = new Text(625, 350, "You won!");
 
     public Door(Position position) {
         open = false;
         pos = position;
-        this.keys = keys;
         door = new Rectangle(pos.getX(), pos.getY(), Var.DOOR_WIDTH, Var.DOOR_HEIGHT);
         door.fill();
     }
@@ -38,12 +37,12 @@ public class Door implements Collidable {
 
     @Override
     public void performCollision() {
-        winRectangle.setColor(Color.GREEN);
-        winRectangle.fill();
-        winMessage.grow(150, 50);
-        winMessage.draw();
+        //winRectangle.setColor(Color.GREEN);
+        //winRectangle.fill();
+        //winMessage.grow(150, 50);
+        //winMessage.draw();
 
-        //winPicture.draw();
+        winPicture.draw();
 
     }
 
