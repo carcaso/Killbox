@@ -7,6 +7,7 @@ import org.academiadecodigo.secondrow.killbox.objects.Position;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.FixedPathEnemy;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.LaserEnemy;
+import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 public class Level1 extends Map {
@@ -17,24 +18,22 @@ public class Level1 extends Map {
         setPlatforms(new Platform[2]);
         setKeys(new Key[1]);
         setEnemy(new Enemy[2]); //changed
+        setJumpBoxes(new JumpBox[2]);
 
         // Door platform
         getPlatforms()[0] = new Platform(new Position(1085, 260), 205, 25);
         setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30,
-                getPlatforms()[0].getY() - Var.DOOR_HEIGHT), getKeys()));
+                getPlatforms()[0].getY() - Var.DOOR_HEIGHT)));
 
         // middle platform
-        // getPlatforms()[1] = new Platform(350, 90);
-        // int x = Var.PADDING + Var.WIDTH  / 2 - width  / 2 = 10 + 640 - 175 = 475
-        // int y = Var.PADDING + Var.HEIGHT / 2 - height / 2; 360  = 325
         getPlatforms()[1] = new Platform(new Position(475, 325), 350, 90);
 
-        // w: 350, h: 90
+        getJumpBoxes()[0] = new JumpBox(new Position(425, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
+        getJumpBoxes()[1] = new JumpBox(new Position(1025, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
 
         // Create a key 5 pixels above platform and in the center of the screen
         getKeys()[0] = new Key(new Position(Var.WIDTH / 2 - Key.SIZE / 2 + Var.PADDING,
-                Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE));
-
+                Var.HEIGHT / 2 - getPlatforms()[1].getHeight() / 2 - Key.SIZE), getDoor());
 
         getEnemies()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
                                             getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());

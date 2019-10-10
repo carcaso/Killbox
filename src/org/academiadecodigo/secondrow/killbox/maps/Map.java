@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox.maps;
 
 import org.academiadecodigo.secondrow.killbox.objects.Door;
 import org.academiadecodigo.secondrow.killbox.objects.Key;
+import org.academiadecodigo.secondrow.killbox.objects.Player;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
@@ -14,6 +15,11 @@ public abstract class Map {
     JumpBox[] jumpBoxes;
     Door door;
     Key[] key;
+    Player player; // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
+    // TODO: 10/10/2019 criar uma classe para mensagens (init, press play) (end) (died)
+    // TODO: 10/10/2019 add cell to map. Only platforms need to be inside these cells (touching)
+    // TODO: 10/10/2019 player jump reset validar o landing (em vez da collision geral)
+
 
     public Enemy[] getEnemies() {
         return enemy;
@@ -49,6 +55,10 @@ public abstract class Map {
     //Retrun the Array Keys
     public Key[] getKeys() {
         return key;
+    }
+
+    public Door getdoor(){
+        return door;
     }
 
     //Added method for get key in index
