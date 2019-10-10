@@ -1,13 +1,10 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
-import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.graphics.Text;
 import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
-import org.academiadecodigo.secondrow.killbox.CollisionDetector;
 import org.academiadecodigo.secondrow.killbox.Var;
 
 
@@ -169,10 +166,17 @@ public class Player implements Movable, KeyboardHandler {
     }
 
     public boolean isDead() {
+
         return dead;
     }
 
-    public void setDead(boolean dead) {
-        this.dead = dead;
+    public void setDead(boolean x){
+
+        this.dead = x;
     }
+
+    public void setBoosted(boolean boost) {
+        this.boosted = boost;
+    }
+
 }
