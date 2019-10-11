@@ -14,7 +14,7 @@ public abstract class Map {
     Platform[] platforms;
     JumpBox[] jumpBoxes;
     Door door;
-    Key[] key;
+    Key[] keys;
     Player player; // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
     // TODO: 10/10/2019 criar uma classe para mensagens (init, press play) (end) (died)
     // TODO: 10/10/2019 add cell to map. Only platforms need to be inside these cells (touching)
@@ -54,16 +54,17 @@ public abstract class Map {
 
     //Retrun the Array Keys
     public Key[] getKeys() {
-        return key;
+        return keys;
     }
+
 
     public Door getdoor(){
         return door;
     }
 
-    //Added method for get key in index
+    //Added method for get keys in index
     public Key getKey(int index){
-        return key[index];
+        return keys[index];
     }
 
 
@@ -77,7 +78,11 @@ public abstract class Map {
     }
 
     public void setKeys(Key[] key) {
-        this.key = key;
+        this.keys = key;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door door, Key[] keys){
