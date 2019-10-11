@@ -8,19 +8,21 @@ import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Enemy implements Movable, Collidable {
 
     @Override
     public void performCollision() {
-        Rectangle youDiedScreen = new Rectangle(427,240, 426,240);
-        youDiedScreen.setColor(Color.WHITE);
-        youDiedScreen.fill();
+        Picture youDiedScreen = new Picture(400, 125, "/Users/codecadet/Desktop/2D-Platform/youdied2.png");
+        //Rectangle youDiedScreen = new Rectangle(427,240, 426,240);
+        //youDiedScreen.setColor(Color.WHITE);
+        youDiedScreen.draw();
 
-        Text text = new Text(615, 350, "YOU DEAD!");
-        text.setColor(Color.RED);
-        text.draw();
-        text.grow(150, 50);
+        //Text text = new Text(615, 350, "YOU DEAD!");
+        //text.setColor(Color.RED);
+        //text.draw();
+        //text.grow(150, 50);
 
     }
 

@@ -43,7 +43,7 @@ public class Level1 extends Map {
         getEnemy()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
                 getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());
 
-        getEnemy()[1] = new Bomb(700, 200);
+        getEnemy()[1] = new Bomb(680, 220);
 
 
     }
