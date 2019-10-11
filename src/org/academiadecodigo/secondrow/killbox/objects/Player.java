@@ -55,6 +55,9 @@ public class Player implements Movable, KeyboardHandler {
 
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
+
+
+
     }
 
     public void update(boolean[] bumps) {
@@ -74,7 +77,7 @@ public class Player implements Movable, KeyboardHandler {
             dy = 0;
         }
 
-        if(isBumpingLeft || isBumpingRight) {
+        if (isBumpingLeft || isBumpingRight) {
             dx = 0;
         }
 
@@ -84,7 +87,7 @@ public class Player implements Movable, KeyboardHandler {
                 isJumping = true;
             }
 
-            if ((playerAvatar.getY() == maxY  || isBumpingBottom) && boosted) {
+            if ((playerAvatar.getY() == maxY || isBumpingBottom) && boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
                 isJumping = true;
             }
@@ -108,7 +111,7 @@ public class Player implements Movable, KeyboardHandler {
         return playerAvatar.getX();
     }
 
-    public int getY(){
+    public int getY() {
         return playerAvatar.getY();
     }
 
@@ -173,7 +176,7 @@ public class Player implements Movable, KeyboardHandler {
         return dead;
     }
 
-    public void setDead(boolean x){
+    public void setDead(boolean x) {
 
         this.dead = x;
     }

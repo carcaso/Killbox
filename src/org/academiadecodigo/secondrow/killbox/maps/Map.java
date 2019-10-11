@@ -79,4 +79,7 @@ public abstract class Map {
     public void setKeys(Key[] key) {
         this.key = key;
     }
+    public int numberOfKeys(){
+        return key.length;
+    }
 }

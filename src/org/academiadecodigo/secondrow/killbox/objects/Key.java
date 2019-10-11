@@ -11,8 +11,7 @@ public class Key implements Collidable {
     private Position pos;
     public static final int SIZE = 15;
     private Door door;
-    private Text winMessage;
-
+    private boolean deleted;
 
     public Key(Position position, Color color, Door door) {
         pos = position;
@@ -53,9 +52,11 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision() {
-        key.delete();
-        door.openDoor();
+        if(!deleted) {
+            key.delete();
+            door.openDoor();
+            deleted=true;
+        }
+
     }
-
-
 }

@@ -25,6 +25,7 @@ public class Game {
 
         p1 = new Player(true);
         p1.init();
+
     }
 
     public void start(Map map) {
@@ -41,8 +42,10 @@ public class Game {
                 collisionDetector.checkCollision(map.getEnemy()[i]);
             }
 
-            if(collisionDetector.checkCollision(map.getDoor())) {
-                break;
+            if (map.getDoor().isOpen()) {
+                if (collisionDetector.checkCollision(map.getDoor())) {
+                    break;
+                }
             }
 
             for (int i = 0; i < map.getJumpBoxes().length; i++) {
