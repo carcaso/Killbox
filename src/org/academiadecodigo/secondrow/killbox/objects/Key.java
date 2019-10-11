@@ -53,7 +53,6 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision() {
-        //key.delete();
         keyPicture.delete();
         door.openDoor();
     }

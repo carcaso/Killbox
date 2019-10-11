@@ -2,7 +2,6 @@ package org.academiadecodigo.secondrow.killbox.objects;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.graphics.Text;
 import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.pictures.Picture;
 
@@ -12,9 +11,6 @@ public class Door implements Collidable {
     private boolean open;
     private Picture winPicture = new Picture(400, 125,"/Users/codecadet/Desktop/2D-Platform/youwin.png" +
             "");
-    //private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
-    //private Text winMessage = new Text(625, 350, "You won!");
-
     public Door(Position position) {
         open = false;
         pos = position;
@@ -31,17 +27,11 @@ public class Door implements Collidable {
             door.setColor(Color.ORANGE);
             open = true;
         }
-
     }
 
 
     @Override
     public void performCollision() {
-        //winRectangle.setColor(Color.GREEN);
-        //winRectangle.fill();
-        //winMessage.grow(150, 50);
-        //winMessage.draw();
-
         winPicture.draw();
 
     }

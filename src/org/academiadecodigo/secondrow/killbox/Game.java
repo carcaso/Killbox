@@ -18,8 +18,8 @@ public class Game {
         walls.setColor(Color.DARK_GRAY);
         walls.fill();
 
-        background = new Rectangle(Var.PADDING + Var.WALL_PADDING, Var.PADDING + Var.WALL_PADDING,
-                Var.WIDTH - 2 * Var.WALL_PADDING, Var.HEIGHT - 2 * Var.WALL_PADDING);
+        background = new Rectangle(Var.PADDING + Var.CELL_SIZE, Var.PADDING + Var.CELL_SIZE,
+                Var.WIDTH - 2 * Var.CELL_SIZE, Var.HEIGHT - 2 * Var.CELL_SIZE);
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
 
@@ -34,14 +34,26 @@ public class Game {
             p1.update(collisionDetector.checkCollision(map.getPlatforms()));
             p1.move();
 
-            map.getEnemy()[0].update();
-            map.getEnemy()[0].move();
+            for (int i = 0; i < map.getKeys().length; i++) {
+                collisionDetector.checkCollision(map.getKeys()[i]);
+            }
+            for (int i = 0; i < map.getEnemy().length; i++) {
+                collisionDetector.checkCollision(map.getEnemy()[i]);
+            }
 
-            collisionDetector.checkCollision(map.getKeys());
-            collisionDetector.checkCollision(map.getDoor());
+            if(collisionDetector.checkCollision(map.getDoor())) {
+                break;
+            }
 
-            map.getEnemy()[0].update();
-            map.getEnemy()[0].move();
+            for (int i = 0; i < map.getJumpBoxes().length; i++) {
+                collisionDetector.checkCollision(map.getJumpBoxes()[i]);
+            }
+
+            for (int i = 0; i < map.getEnemy().length; i++) {
+                map.getEnemy()[i].update();
+                map.getEnemy()[i].move();
+                map.getEnemy()[i].shot(p1.getX(), p1.getY());
+            }
 
             try {
                 Thread.sleep(Var.DELAY);
@@ -49,7 +61,5 @@ public class Game {
                 e.printStackTrace();
             }
         }
-
-
     }
 }
