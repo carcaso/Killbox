@@ -11,15 +11,16 @@ public class Main {
         synchronized (g) {
             try {
                 Menu menu = new Menu();
+                menu.drawMenu();
 
-                while (!menu.getStart()){
-                    menu.drawMenu();
-                    Thread.sleep(50000000);
+                while (!menu.getStart()) {
+                    Thread.sleep(10);
                 }
+
                 g.init();
                 Level1 level1 = new Level1();
                 g.start(level1);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
         }
