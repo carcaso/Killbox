@@ -45,6 +45,10 @@ public class Menu implements KeyboardHandler {
         return isStart;
     }
 
+    public boolean getPaused(){
+        return isPaused;
+    }
+
     public void drawMenu() {
 
         keyboard();
@@ -198,7 +202,7 @@ public class Menu implements KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_B:
-                if (!isBack) {
+                if (!isBack && !isStart) {
                     reDrawMenu();
                     isBack = true;
                     isHelp = false;
@@ -208,14 +212,9 @@ public class Menu implements KeyboardHandler {
                 if (isPaused) {
                     return;
                 }
-                /*isPaused = true;
-                try{
-                    while(isPaused){
-                        wait();
-                    }
-                }catch(InterruptedException ie){
-                    System.out.println(ie.getMessage());
-                }*/
+                System.out.println("Pressed P");
+                isPaused = true;
+                isStart = false;
                 break;
         }
     }
