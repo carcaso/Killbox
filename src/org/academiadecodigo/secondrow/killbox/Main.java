@@ -17,7 +17,10 @@ public class Main {
                     Thread.sleep(10);
                 }
 
-                while (menu.getStart() && !menu.getPaused()) {
+                while (!menu.getPaused()) {
+                    if(menu.getPaused()){
+                        Thread.sleep(10);
+                    }
                     g.init();
                     Level1 level1 = new Level1();
                     g.start(level1);
