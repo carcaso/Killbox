@@ -84,7 +84,8 @@ public abstract class Map {
     public Player getPlayer() {
         return player;
     }
+
     public int numberOfKeys(){
-        return key.length;
+        return keys.length;
     }
 }
