@@ -177,19 +177,17 @@ public class Menu implements KeyboardHandler {
     public void keyPressed(KeyboardEvent e) {
         switch (e.getKey()) {
             case KeyboardEvent.KEY_S:
-                System.out.println("Pressed Key S");
                 isStart = true;
+                isPaused = false;
                 break;
             case KeyboardEvent.KEY_H:
-                System.out.println("Pressed Key H");
-                if (!isHelp) {
+                if (!isHelp && !isStart) {
                     drawHelpMenu();
                     isHelp = true;
                     isBack = false;
                 }
                 break;
             case KeyboardEvent.KEY_Q:
-                System.out.println("Pressed Key Q");
                 System.exit(1);
                 break;
             case KeyboardEvent.KEY_F:
@@ -207,9 +205,17 @@ public class Menu implements KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_P:
-                if (!isPaused) {
-                    isPaused = true;
+                if (isPaused) {
+                    return;
                 }
+                /*isPaused = true;
+                try{
+                    while(isPaused){
+                        wait();
+                    }
+                }catch(InterruptedException ie){
+                    System.out.println(ie.getMessage());
+                }*/
                 break;
         }
     }
