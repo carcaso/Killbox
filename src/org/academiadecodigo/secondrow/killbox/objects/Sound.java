@@ -8,11 +8,14 @@ import java.io.File;
 public class Sound {
 
     private Clip clip;
+    private long size;
 
     public void playSound() {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
                     new File("music.wav").getAbsoluteFile());
+            size = audioInputStream.getFrameLength();
+            System.out.println(size);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
@@ -22,6 +25,10 @@ public class Sound {
             ex.printStackTrace();
         }
 
+    }
+
+    public long getSize(){
+        return size;
     }
 
 }
