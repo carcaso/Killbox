@@ -81,13 +81,13 @@ public class LaserEnemy extends Enemy implements Collidable {
     public void shot(int playerX, int playerY){
 
 
-
-        if(shotTaken && counter < 900) {
+        //changed from 900 to 300
+        if(shotTaken && counter < 300) {
             counter++;
             return;
         }
 
-        if(counter == 900){shot.delete();}
+        if(counter == 300){shot.delete();}
 
         int inicialX = pos.getX() + (width/2);
         int inicialY = pos.getY() + (height/2);

@@ -15,7 +15,9 @@ public abstract class Map {
     JumpBox[] jumpBoxes;
     Door door;
     Key[] keys;
-    Player player; // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
+    Player player;
+
+    // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
     // TODO: 10/10/2019 criar uma classe para mensagens (init, press play) (end) (died)
     // TODO: 10/10/2019 add cell to map. Only platforms need to be inside these cells (touching)
     // TODO: 10/10/2019 player jump reset validar o landing (em vez da collision geral)
@@ -68,6 +70,7 @@ public abstract class Map {
     }
 
 
+
     // Setteres
     public void setPlatforms(Platform[] platforms) {
         this.platforms = platforms;
@@ -79,6 +82,12 @@ public abstract class Map {
 
     public void setKeys(Key[] key) {
         this.keys = key;
+    }
+
+    public void setPlayer(Player player){
+
+        this.player = player;
+
     }
 
     public Player getPlayer() {

@@ -30,7 +30,7 @@ public class JumpBox implements Collidable {
     }
 
     public void delete(){
-        super.delete();
+        platform.delete();
     }
 
     public int getWidth() {
