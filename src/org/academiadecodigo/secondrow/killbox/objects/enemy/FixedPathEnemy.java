@@ -2,12 +2,8 @@ package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Ellipse;
-import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.graphics.Text;
-import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
-import org.academiadecodigo.secondrow.killbox.objects.Player;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 
 public class FixedPathEnemy extends Enemy implements Movable, Collidable {
@@ -19,10 +15,10 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
     private Position pos;
     private Ellipse enemy;
 
-    private int plataformX;
-    private int plataformY;
-    private int plataformWidth;
-    private int plataformHeight;
+    private int platformX;
+    private int platformY;
+    private int platformWidth;
+    private int platformHeight;
 
     private boolean block1 = false;
     private boolean block2 = false;
@@ -32,19 +28,13 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
     private int dx = 0;
     private int dy = 0;
 
-    //private Player player;
+    public FixedPathEnemy(int platformX, int platformY, int platformWidth, int platformHeight) {
+        this.platformX = platformX;
+        this.platformY = platformY;
+        this.platformWidth = platformWidth;
+        this.platformHeight = platformHeight;
 
-
-    public FixedPathEnemy(int plataformX, int plataformY, int plataformWidth, int plataformHeight) {
-
-        this.plataformX = plataformX;
-        this.plataformY = plataformY;
-        this.plataformWidth = plataformWidth;
-        this.plataformHeight = plataformHeight;
-
-        //this.player = player;
-
-        pos = new Position(plataformX - distanceFromPlataform, plataformY - distanceFromPlataform);
+        pos = new Position(platformX - distanceFromPlataform, platformY - distanceFromPlataform);
         enemy = new Ellipse(pos.getX(), pos.getY(), SIZE, SIZE);
         enemy.setColor(Color.ORANGE);
         enemy.fill();
@@ -64,17 +54,16 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         boolean directionLeft;
 
         //int minX = pos.getX();
-        int minX = plataformX - distanceFromPlataform;
+        int minX = platformX - distanceFromPlataform;
 
         //int minY = pos.getY();
-        int minY = plataformY - distanceFromPlataform;
+        int minY = platformY - distanceFromPlataform;
 
-        int maxX = minX + 2 * (distanceFromPlataform) + plataformWidth - 40;
-        int maxY = minY + 2 * (distanceFromPlataform) + plataformHeight - 40;
+        int maxX = minX + 2 * (distanceFromPlataform) + platformWidth - 40;
+        int maxY = minY + 2 * (distanceFromPlataform) + platformHeight - 40;
 
         //to introduce as a parameter in fixed-path-enemy constructor
         directionRight = true;
-
 
         //move to right
         if (directionRight) {
@@ -124,7 +113,6 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
                 pos.setY(getY() - 1);
                 dx = 0;
                 dy = -1;
-                return;
             }
 
 

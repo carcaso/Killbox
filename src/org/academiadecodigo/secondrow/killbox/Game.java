@@ -18,8 +18,8 @@ public class Game {
         walls.setColor(Color.DARK_GRAY);
         walls.fill();
 
-        background = new Rectangle(Var.PADDING + Var.WALL_PADDING, Var.PADDING + Var.WALL_PADDING,
-                Var.WIDTH - 2 * Var.WALL_PADDING, Var.HEIGHT - 2 * Var.WALL_PADDING);
+        background = new Rectangle(Var.PADDING + Var.CELL_SIZE, Var.PADDING + Var.CELL_SIZE,
+                Var.WIDTH - 2 * Var.CELL_SIZE, Var.HEIGHT - 2 * Var.CELL_SIZE);
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
 
@@ -52,10 +52,11 @@ public class Game {
                 collisionDetector.checkCollision(map.getJumpBoxes()[i]);
             }
 
-
-            map.getEnemy()[0].update();
-            map.getEnemy()[0].move();
-            map.getEnemy()[1].shot(p1.getX(), p1.getY());
+            for (int i = 0; i < map.getEnemy().length; i++) {
+                map.getEnemy()[i].update();
+                map.getEnemy()[i].move();
+                map.getEnemy()[i].shot(p1.getX(), p1.getY());
+            }
 
             try {
                 Thread.sleep(Var.DELAY);

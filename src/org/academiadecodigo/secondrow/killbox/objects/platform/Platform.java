@@ -34,18 +34,28 @@ public class Platform implements Collidable {
 
     /**
      * Creates a platform in the middle of the screen
-     * @param width of the desired platform
-     * @param height of the desired platform
+     * @param width of the desired platform in multiples of CELL_SIZE
+     * @param height of the desired platform in multiples of CELL_SIZE
      */
     public Platform(int width, int height) {
+
+        if(width % Var.CELL_SIZE != 0 || height % Var.CELL_SIZE != 0) {
+            System.err.println("ANDAKJDKASEJFLSIDHJFLSDIFHLKSDHF");
+        }
         this.width = width;
         this.height = height;
         platform = createPlatformInCenter(width, height);
         platform.setColor(Color.DARK_GRAY);
         platform.fill();
+
+        System.out.println("Platform: (x,y) (" + getX() + "," + getY() + ")" + height);
     }
 
-    private Rectangle createPlatformInCenter(int width, int height) {
+    private Rectangle createPlatformInCenter(int widthInCells, int heightInCells) {
+        if(width % 2 != 0 || height % 2 != 0) {
+            System.err.println("ATENTION! These dimentions are not good. Choose an even" +
+                    " number of Cells.");
+        }
         int x = Var.PADDING + Var.WIDTH  / 2 - width  / 2;
         int y = Var.PADDING + Var.HEIGHT / 2 - height / 2;
         pos = new Position(x, y);
