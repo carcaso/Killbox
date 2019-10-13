@@ -16,7 +16,6 @@ public class Menu implements KeyboardHandler {
 
     //Draw Menu and Start property
     private boolean isStart = false;
-    private boolean isAlright = false;
     private boolean isBack = false;
     private boolean isPaused = false;
 
@@ -39,7 +38,6 @@ public class Menu implements KeyboardHandler {
     private Text quit = new Text(590, 450, "Quit -> Press Q (Anytime)");
     private Text back = new Text(70, 700, "[B] Back");
     private Text start = new Text(1200, 700, "[S] Start");
-    private Text message = new Text(70, 45, "Alright ;D");
 
     public boolean getStart() {
         return isStart;
@@ -193,13 +191,6 @@ public class Menu implements KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_Q:
                 System.exit(1);
-                break;
-            case KeyboardEvent.KEY_F:
-                if (!isAlright) {
-                    message.grow(30, 20);
-                    message.draw();
-                    isAlright = true;
-                }
                 break;
             case KeyboardEvent.KEY_B:
                 if (!isBack && !isStart) {
