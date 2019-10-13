@@ -39,7 +39,6 @@ public class Player implements Movable, KeyboardHandler {
     private int minX = Var.PADDING + Var.WALL_PADDING;
 
     // TODO: 2019-10-06 Change from maximum Y value to incremental value
-    private int gravity = 1;
     private boolean specialJump;
 
     public Player(boolean specialJump) {
@@ -79,18 +78,18 @@ public class Player implements Movable, KeyboardHandler {
         }
 
         // Left Movement
-        if (keyA && xMovement >= -5) {
+        if (keyA && xMovement >= Var.PLAYER_TOP_SPEED) {
             xMovement -= Var.PLAYER_VELOCITY;
         }
 
         // Right movement
-        if (keyD && xMovement <= 5) {
+        if (keyD && xMovement <= Math.abs(Var.PLAYER_TOP_SPEED)) {
             xMovement += Var.PLAYER_VELOCITY;
         }
 
         // FIXME: 2019-10-12 set terminal velocity
-        if (yMovement < 25) {
-            yMovement += gravity;
+        if (yMovement < Var.PLAYER_TERMINAL_VELOCITY) {
+            yMovement += Var.GRAVITY;
         }
 
         if (isBumpingBottom) {
@@ -105,7 +104,7 @@ public class Player implements Movable, KeyboardHandler {
             if (jumpAvailable) {
                 // FIXME: 2019-10-12 set jump speed
                 System.out.println("jumping!");
-                yMovement = -30;
+                yMovement = Var.PLAYER_JUMP_SPEED;
                 jumpAvailable = false;
             }
         }
@@ -138,7 +137,6 @@ public class Player implements Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 keySpace = true;
-                effects.playSound(0,"jump.wav");
                 break;
         }
     }
@@ -181,19 +179,11 @@ public class Player implements Movable, KeyboardHandler {
         // Original position
         int ogPlayerStartX = this.getX();
         int ogPlayerEndX = this.getX() + Var.PLAYER_WIDTH;
-        int ogPlayerStartY = this.getY();
-        int ogPlayerEndY = this.getY() + Var.PLAYER_HEIGHT;
 
         int objectStartX;
         int objectStartY;
         int objectEndX;
         int objectEndY;
-
-        boolean yCeil = false;
-        boolean yFloor = false;
-        boolean xLeft = false;
-        boolean xRight = false;
-
 
         for (Platform platform : platforms) {
 
@@ -285,6 +275,11 @@ public class Player implements Movable, KeyboardHandler {
         // Move our player
         playerAvatar.translate(xMovement, yMovement);
 
+        if (keyD) {
+            // remove LASTPICTURE
+            // draw rightCharacterpicture.
+        }
+
     }
 
     /**
@@ -321,7 +316,6 @@ public class Player implements Movable, KeyboardHandler {
         if (getPlayerVectors(Vectors.X_START) < minX) {
             xMovement += (minX - getPlayerVectors(Vectors.X_START));
         }
-
     }
 
     public int getPlayerVectors(Vectors vector) {
@@ -337,7 +331,6 @@ public class Player implements Movable, KeyboardHandler {
             default:
                 return 0;
         }
-
     }
 
     public int getColisionVectors(Platform[] platforms, int index, Vectors vector) {
@@ -357,20 +350,15 @@ public class Player implements Movable, KeyboardHandler {
     }
 
     public boolean isDead() {
-
         return dead;
     }
-
-    public void setDead(boolean x) {
 
     public void setDead(boolean x) {
         this.dead = x;
     }
 
     public void boost() {
-        //System.out.println("boosting!");
-        yMovement = -27;
+        yMovement = Var.PLAYER_JUMP_SPEED * 2;
         // playBoostSound
     }
-
 }

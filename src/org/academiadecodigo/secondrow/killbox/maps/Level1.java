@@ -21,14 +21,6 @@ public class Level1 extends Map {
         setEnemy(new Enemy[2]); //changed
         setJumpBoxes(new JumpBox[2]);
 
-        // Door platform
-        getPlatforms()[0] = new Platform(
-                new Position(Var.PADDING + Var.WIDTH - Var.WALL_PADDING - 6 * Var.CELL_SIZE,
-                        7 * Var.CELL_SIZE),
-                6 * Var.CELL_SIZE, Var.CELL_SIZE);
-        setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 40,
-                getPlatforms()[0].getY() - Var.DOOR_HEIGHT)));
-
         //Original x of platform 85
         getPlatforms()[0] = new Platform(new Position(1065, 260), 205, 25);
         setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 30,
