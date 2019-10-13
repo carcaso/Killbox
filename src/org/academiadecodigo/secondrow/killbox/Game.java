@@ -37,14 +37,15 @@ public class Game {
 
             for (int i = 0; i < map.getKeys().length; i++) {
                 collisionDetector.checkCollision(map.getKeys()[i]);
-
             }
             for (int i = 0; i < map.getEnemies().length; i++) {
                 collisionDetector.checkCollision(map.getEnemies()[i]);
             }
 
-            if(collisionDetector.checkCollision(map.getDoor())) {
-                break;
+            if (map.getDoor().isOpen()) {
+                if (collisionDetector.checkCollision(map.getDoor())) {
+                    break;
+                }
             }
 
             for (int i = 0; i < map.getJumpBoxes().length; i++) {

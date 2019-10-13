@@ -81,7 +81,7 @@ public class Player implements Movable, KeyboardHandler {
             dy = 0;
         }
 
-        if(isBumpingLeft || isBumpingRight) {
+        if (isBumpingLeft || isBumpingRight) {
             dx = 0;
         }
 
@@ -115,7 +115,7 @@ public class Player implements Movable, KeyboardHandler {
         return playerAvatar.getX();
     }
 
-    public int getY(){
+    public int getY() {
         return playerAvatar.getY();
     }
 
@@ -175,7 +175,17 @@ public class Player implements Movable, KeyboardHandler {
         keyboard.addEventListener(keybind);
     }
 
-    public void setBoosted(boolean boost){
+    public boolean isDead() {
+
+        return dead;
+    }
+
+    public void setDead(boolean x) {
+
+        this.dead = x;
+    }
+
+    public void setBoosted(boolean boost) {
         this.boosted = boost;
     }
 

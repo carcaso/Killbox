@@ -70,7 +70,6 @@ public abstract class Map {
     }
 
 
-
     // Setteres
     public void setPlatforms(Platform[] platforms) {
         this.platforms = platforms;
@@ -94,6 +93,10 @@ public abstract class Map {
         return player;
     }
 
+    public int numberOfKeys(){
+        return keys.length;
+    }
+
     public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door door, Key[] keys){
 
         for (int i = 0; i < enemies.length; i++) {
@@ -108,12 +111,12 @@ public abstract class Map {
             jumpBoxes[i].delete();
         }
 
-            door.delete();
+        door.delete();
 
         for (int i = 0; i < keys.length; i++) {
             keys[i].delete();
         }
     }
 
-
 }
+

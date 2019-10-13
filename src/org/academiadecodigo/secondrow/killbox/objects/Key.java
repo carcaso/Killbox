@@ -9,11 +9,9 @@ public class Key implements Collidable {
 
     private Rectangle key;
     private Position pos;
-    private Door door;
     public static final int SIZE = 15;
-    private int totalKeys;
-    private int keysLeft;
-
+    private Door door;
+    private boolean deleted;
 
     public Key(Position position, Color color, Door door) {
         pos = position;
@@ -26,13 +24,12 @@ public class Key implements Collidable {
     /**
      * Default constructor
      */
-    public Key(Position position, Door door, int numberOfKeys) {
+    public Key(Position position, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         key.setColor(Color.YELLOW);
         key.fill();
         this.door = door;
-        totalKeys=numberOfKeys;
     }
 
     // Getters
@@ -56,15 +53,12 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision() {
-        if (keysLeft == totalKeys) {
+        if (!deleted) {
             key.delete();
-            System.out.println(door);
             door.openDoor();
-            return;
+            deleted = true;
         }
 
-        keysLeft++;
+
     }
-
-
 }
