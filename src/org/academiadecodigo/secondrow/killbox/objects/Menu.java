@@ -7,6 +7,7 @@ import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
+import org.academiadecodigo.secondrow.killbox.Game;
 import org.academiadecodigo.secondrow.killbox.Var;
 
 public class Menu implements KeyboardHandler {
@@ -21,7 +22,7 @@ public class Menu implements KeyboardHandler {
 
     //Menu properties
     private Rectangle background = new Rectangle(10, 10, Var.WIDTH, Var.HEIGHT);
-    private Text titleText = new Text(630, 100, "<KillBox>");
+    private Text titleText = new Text(640, 100, "<KillBox>");
     private Text startText = new Text(610, 280, "START (Press S)");
     private Rectangle startButton = new Rectangle(545, 250, 200, 70);
     private Text helpText = new Text(610, 380, "HELP (Press H)");
@@ -41,6 +42,10 @@ public class Menu implements KeyboardHandler {
 
     public boolean getStart() {
         return isStart;
+    }
+
+    public void setStart(boolean value){
+        isStart = value;
     }
 
     public boolean getPaused(){

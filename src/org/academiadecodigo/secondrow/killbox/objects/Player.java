@@ -1,6 +1,5 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
-import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
@@ -12,7 +11,6 @@ import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
 
 public class Player implements Movable, KeyboardHandler {
 
@@ -41,10 +39,11 @@ public class Player implements Movable, KeyboardHandler {
     // TODO: 2019-10-06 Change from maximum Y value to incremental value
     private boolean specialJump;
 
-    public Player(boolean specialJump) {
+    public Player(boolean specialJump, int x, int y){
         this.specialJump = specialJump;
         this.keyboard = new Keyboard(this);
-        playerAvatar = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+        playerAvatar = new Rectangle(x, y, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+
     }
 
     public void init() {
@@ -350,10 +349,12 @@ public class Player implements Movable, KeyboardHandler {
     }
 
     public boolean isDead() {
+
         return dead;
     }
 
     public void setDead(boolean x) {
+
         this.dead = x;
     }
 
@@ -361,4 +362,5 @@ public class Player implements Movable, KeyboardHandler {
         yMovement = Var.PLAYER_JUMP_SPEED * 2;
         // playBoostSound
     }
+
 }

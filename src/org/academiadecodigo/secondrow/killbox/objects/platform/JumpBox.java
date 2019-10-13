@@ -32,6 +32,10 @@ public class JumpBox implements Collidable {
         effect.playSound(0,"boost.wav");
     }
 
+    public void delete(){
+        platform.delete();
+    }
+
     public int getWidth() {
         return width;
     }
