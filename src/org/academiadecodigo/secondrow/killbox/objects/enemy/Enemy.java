@@ -8,18 +8,16 @@ import org.academiadecodigo.secondrow.killbox.objects.Sound;
 
 public class Enemy implements Movable, Collidable {
 
-    public Sound effect = new Sound();
+    private Sound effect = new Sound();
 
     @Override
     public void performCollision() {
-
         Text text = new Text(640, 360, "K.O");
         text.setColor(Color.RED);
         text.grow(150, 50);
         text.draw();
-        //effect.playSound(0,"punch.wav");
-        effect.playSound(0,"KO.wav");
-
+        effect.playSound(0,"punch.wav");
+        effect.playSound(0, "KO.wav");
     }
 
     @Override
@@ -49,7 +47,6 @@ public class Enemy implements Movable, Collidable {
 
     public void update() {
     }
-
 
     //added
     public void shot(int playerX, int playerY) {
