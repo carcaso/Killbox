@@ -33,9 +33,9 @@ public class Main {
                             Thread.sleep(10);
                         }
                         g.setPlayerDead(false);
-                        i--;
+                        --i;
                     }
-                   g.setPlayerWon(false);
+                    g.setPlayerWon(false);
                     menu.setStart(false);
                     g.init();
                     g.getMaps()[i].draw();
