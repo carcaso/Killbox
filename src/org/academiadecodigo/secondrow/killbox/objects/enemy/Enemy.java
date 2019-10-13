@@ -1,31 +1,31 @@
 package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.Color;
-import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.graphics.Text;
-import org.academiadecodigo.secondrow.killbox.CollisionDetector;
-import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
-import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.killbox.objects.Sound;
 
 public class Enemy implements Movable, Collidable {
 
+    public Sound effect = new Sound();
+
     @Override
     public void performCollision() {
-        Rectangle youDiedScreen = new Rectangle(427,240, 426,240);
-        youDiedScreen.setColor(Color.WHITE);
-        youDiedScreen.fill();
 
-        Text text = new Text(615, 350, "YOU DEAD!");
+        Text text = new Text(640, 360, "K.O");
         text.setColor(Color.RED);
-        text.draw();
         text.grow(150, 50);
+        text.draw();
+        //effect.playSound(0,"punch.wav");
+        effect.playSound(0,"KO.wav");
 
     }
 
     @Override
-    public int getWidth() { return 0; }
+    public int getWidth() {
+        return 0;
+    }
 
     @Override
     public int getHeight() {
@@ -47,9 +47,11 @@ public class Enemy implements Movable, Collidable {
 
     }
 
-    public void update(){}
+    public void update() {
+    }
 
 
     //added
-    public void shot(int playerX, int playerY){}
+    public void shot(int playerX, int playerY) {
+    }
 }

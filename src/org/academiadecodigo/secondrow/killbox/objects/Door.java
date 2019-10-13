@@ -9,8 +9,8 @@ public class Door implements Collidable {
     private Rectangle door;
     private Position pos;
     private boolean open;
-    private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
-    private Text winMessage = new Text(625, 350, "You won!");
+    //private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
+    private Text winMessage = new Text(635, 355, "Alright!");
     private int totalButton;
     private int howManyToOpen = 1;
 
@@ -39,8 +39,8 @@ public class Door implements Collidable {
 
     @Override
     public void performCollision() {
-        winRectangle.setColor(Color.GREEN);
-        winRectangle.fill();
+        //winRectangle.setColor(Color.GREEN);
+        //winRectangle.fill();
         winMessage.grow(150, 50);
         winMessage.draw();
     }

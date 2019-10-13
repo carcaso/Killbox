@@ -1,10 +1,7 @@
 package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.killbox.maps.Map;
-import org.academiadecodigo.secondrow.killbox.objects.Collidable;
-import org.academiadecodigo.secondrow.killbox.objects.Door;
-import org.academiadecodigo.secondrow.killbox.objects.Key;
-import org.academiadecodigo.secondrow.killbox.objects.Player;
+import org.academiadecodigo.secondrow.killbox.objects.*;
 import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
@@ -13,6 +10,7 @@ public class CollisionDetector {
 
     Map map;
     Player player;
+    private Sound effect = new Sound();
 
     public CollisionDetector(Map map, Player player) {
         this.player = player;
@@ -121,6 +119,7 @@ public class CollisionDetector {
 
             if (object instanceof JumpBox) {
                 player.setBoosted(true);
+                effect.playSound(0,"boost.wav");
             }
             return true;
         }

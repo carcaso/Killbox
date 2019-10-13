@@ -98,6 +98,7 @@ public class Player implements Movable, KeyboardHandler {
                     boosted = false;
                     maxJump = 0;
                     dy = 0;
+                    effects.playSound(0,"jump.wav");
                     return;
                 }
 
@@ -126,7 +127,6 @@ public class Player implements Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 keySpace = true;
-                effects.playSound(0,"jump.wav");
                 break;
         }
     }
