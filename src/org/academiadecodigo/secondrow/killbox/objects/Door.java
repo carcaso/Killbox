@@ -22,9 +22,7 @@ public class Door implements Collidable {
         door.fill();
     }
 
-    public boolean isOpen() {
-        return open;
-    }
+
 
     public void delete(){door.delete();}
 
@@ -39,6 +37,9 @@ public class Door implements Collidable {
             open = true;
     }
 
+    public boolean isOpen() {
+        return open;
+    }
 
     @Override
     public void performCollision() {

@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Ellipse;
+import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Player;

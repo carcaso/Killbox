@@ -10,7 +10,7 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
     private int SIZE = 40;
 
-    private int distanceFromPlataform = 15 + SIZE;
+    private int distanceFromPlatform = 15 + SIZE;
 
     private Position pos;
     private Ellipse enemy;
@@ -44,7 +44,7 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         this.directionLeft = directionLeft;
         this.directionRight = directionRight;
 
-        pos = new Position(platformX - distanceFromPlataform, platformY - distanceFromPlataform);
+        pos = new Position(platformX - distanceFromPlatform, platformY - distanceFromPlatform);
         enemy = new Ellipse(pos.getX(), pos.getY(), SIZE, SIZE);
         enemy.setColor(Color.ORANGE);
         enemy.fill();
@@ -84,13 +84,13 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
     public void moveRight(){
 
-        int minX = platformX - distanceFromPlataform;
+        int minX = platformX - distanceFromPlatform;
 
         //int minY = pos.getY();
-        int minY = platformY - distanceFromPlataform;
+        int minY = platformY - distanceFromPlatform;
 
-        int maxX = minX + 2 * (distanceFromPlataform) + platformWidth - 40;
-        int maxY = minY + 2 * (distanceFromPlataform) + platformHeight - 40;
+        int maxX = minX + 2 * (distanceFromPlatform) + platformWidth - 40;
+        int maxY = minY + 2 * (distanceFromPlatform) + platformHeight - 40;
 
 
         if(enemy.getX() == maxX && !block1) {block1=true;}
@@ -142,13 +142,13 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
     public void moveLeft(){
 
-        int minX = platformX - distanceFromPlataform;
+        int minX = platformX - distanceFromPlatform;
 
         //int minY = pos.getY();
-        int minY = platformY - distanceFromPlataform;
+        int minY = platformY - distanceFromPlatform;
 
-        int maxX = minX + 2 * (distanceFromPlataform) + platformWidth - 40;
-        int maxY = minY + 2 * (distanceFromPlataform) + platformHeight - 40;
+        int maxX = minX + 2 * (distanceFromPlatform) + platformWidth - 40;
+        int maxY = minY + 2 * (distanceFromPlatform) + platformHeight - 40;
 
         if(enemy.getY() == maxY){block1 = true;}
         if(minY < maxY && !block1){

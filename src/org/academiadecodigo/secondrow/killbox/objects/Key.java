@@ -13,6 +13,7 @@ public class Key implements Collidable {
     private Door door;
     private boolean deleted;
 
+    /*
     public Key(Position position, Color color, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -20,7 +21,7 @@ public class Key implements Collidable {
         key.fill();
         this.door = door;
     }
-
+    */
     /**
      * Default constructor
      */
