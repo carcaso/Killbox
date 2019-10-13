@@ -7,6 +7,7 @@ import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
 import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.Vectors;
+import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 import java.sql.Timestamp;
@@ -358,9 +359,21 @@ public class Player implements Movable, KeyboardHandler {
         this.dead = x;
     }
 
-    public void boost() {
-        yMovement = Var.PLAYER_JUMP_SPEED * 2;
-        // playBoostSound
+    public void boost(JumpBox jumpBox) {
+
+        if (jumpBox.getType() == 1) {
+            yMovement = Var.PLAYER_JUMP_SPEED * 2;
+        }
+
+        if (jumpBox.getType() == 2) {
+            xMovement = Var.PLAYER_JUMP_SPEED;
+            yMovement = Var.PLAYER_JUMP_SPEED;
+        }
+
+        if (jumpBox.getType() == 3) {
+            xMovement = - Var.PLAYER_JUMP_SPEED;
+            yMovement = Var.PLAYER_JUMP_SPEED;
+        }
     }
 
 }

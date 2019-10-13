@@ -16,4 +16,5 @@ public class Var {
     public static final int PLAYER_TOP_SPEED = -5;
     public static final int PLAYER_JUMP_SPEED = -15;
     public static final int GRAVITY = 1;
+    public static final int ENEMY_SPEED = 10;
 }

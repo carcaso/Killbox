@@ -13,12 +13,14 @@ public class JumpBox implements Collidable {
     private int height;
     private Rectangle platform;
     private Sound effect = new Sound();
+    private int type;
 
-    public JumpBox(Position pos, int width, int height) {
+    public JumpBox(Position pos, int width, int height, int type) {
 
         this.pos = pos;
         this.width = width;
         this.height = height;
+        this.type = type;
 
         platform = new Rectangle(pos.getX(), pos.getY(), width, height);
 
@@ -29,7 +31,6 @@ public class JumpBox implements Collidable {
     @Override
     public void performCollision() {
         // This method is not used.
-        effect.playSound(0,"boost.wav");
     }
 
     public void delete(){
@@ -52,5 +53,8 @@ public class JumpBox implements Collidable {
         return platform.getY();
     }
 
+    public int getType() {
+        return type;
+    }
 }
 

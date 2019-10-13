@@ -120,7 +120,8 @@ public class CollisionDetector {
             object.performCollision();
 
             if (object instanceof JumpBox) {
-                player.boost();
+                JumpBox jumpBox = (JumpBox) object;
+                player.boost(jumpBox);
             }
             return true;
         }

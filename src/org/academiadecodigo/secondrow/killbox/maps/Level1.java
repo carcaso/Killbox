@@ -38,8 +38,8 @@ public class Level1 extends Map {
         // middle platform
         getPlatforms()[1] = new Platform(Var.CELL_SIZE * 10, Var.CELL_SIZE * 2);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        getJumpBoxes()[0] = new JumpBox(new Position(425, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
-        getJumpBoxes()[1] = new JumpBox(new Position(1025, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
+        getJumpBoxes()[0] = new JumpBox(new Position(425, Var.HEIGHT - Var.WALL_PADDING), 20, 10, 1);
+        getJumpBoxes()[1] = new JumpBox(new Position(1025, Var.HEIGHT - Var.WALL_PADDING), 20, 10, 1);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         getEnemies()[0] = new FixedPathEnemy(getPlatforms()[1].getX(), getPlatforms()[1].getY(),
                 getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight(),

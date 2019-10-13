@@ -67,12 +67,12 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
         if(enemy.getY() == end) {block1 = true;}
         if(start < end) {
             if(enemy.getX() == player.getX() && player.getY() > enemy.getY()){
-                pos.setY(getY() + 2);
-                dy = +2;
+                pos.setY(getY() + Var.ENEMY_SPEED * 2);
+                dy = Var.ENEMY_SPEED * 2;
                 return;
             }
-            pos.setY(getY() + 1);
-            dy = +1;
+            pos.setY(getY() + Var.ENEMY_SPEED);
+            dy = Var.ENEMY_SPEED;
             return;
         }
 
@@ -80,12 +80,12 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
         if (enemy.getY() == start) {block1 = false;}
         if(end > start) {
             if(enemy.getX() == player.getX() && player.getY() < enemy.getY()){
-                pos.setY(getY() - 2);
-                dy = -2;
+                pos.setY(getY() - Var.ENEMY_SPEED * 2);
+                dy = - Var.ENEMY_SPEED;
                 return;
             }
-            pos.setY(getY() - 1);
-            dy = -1;
+            pos.setY(getY() - Var.ENEMY_SPEED);
+            dy = -Var.ENEMY_SPEED;
             return;
         }
 
@@ -100,24 +100,24 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
         if(enemy.getX() == end) {block1 = true;}
         if(start < end && !block1) {
             if(enemy.getY() == player.getY() && player.getX() > enemy.getX()){
-                pos.setX(getX() + 2);
-                dx = +2;
+                pos.setX(getX() + Var.ENEMY_SPEED * 2);
+                dx = Var.ENEMY_SPEED * 2;
                 return;
             }
-            pos.setX(getX() + 1);
-            dx = +1;
+            pos.setX(getX() + Var.ENEMY_SPEED);
+            dx = Var.ENEMY_SPEED;
             return;
         }
 
         if(enemy.getX() == start ){block1 = false;}
         if(end > start && !block2) {
             if(enemy.getY() == player.getY() && player.getX() < enemy.getX()){
-                pos.setX(getX() - 2);
-                dx = -2;
+                pos.setX(getX() - Var.ENEMY_SPEED * 2);
+                dx = - Var.ENEMY_SPEED * 2;
                 return;
             }
-            pos.setX(getX() - 1);
-            dx = -1;
+            pos.setX(getX() - Var.ENEMY_SPEED);
+            dx = -Var.ENEMY_SPEED;
             return;
         }
 

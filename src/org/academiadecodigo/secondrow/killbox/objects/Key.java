@@ -61,7 +61,5 @@ public class Key implements Collidable {
             door.openDoor();
             deleted = true;
         }
-
-
     }
 }

@@ -42,23 +42,23 @@ public class Level2 extends Map{
         getPlatforms()[4] = new Platform(new Position(720, 570), 150, 50);
         /////////////////////////////////////////////////////////////////////////////////////////
         //platform L jumpbox
-        getJumpBoxes()[0] = new JumpBox(new Position(680, 495), 20, 5);
+        getJumpBoxes()[0] = new JumpBox(new Position(680, 495), 20, 5, 1);
         //door jumpbox
-        getJumpBoxes()[1] = new JumpBox(new Position(220, 695), 20, 5);
+        getJumpBoxes()[1] = new JumpBox(new Position(220, 695), 20, 5, 1);
         //top platform jumpboxes
-        getJumpBoxes()[2] = new JumpBox(new Position(150, 125), 20, 5);
-        getJumpBoxes()[3] = new JumpBox(new Position(250, 125), 20, 5);
-        getJumpBoxes()[4] = new JumpBox(new Position(350, 125), 20, 5);
-        getJumpBoxes()[5] = new JumpBox(new Position(450, 125), 20, 5);
-        getJumpBoxes()[6] = new JumpBox(new Position(550, 125), 20, 5);
-        getJumpBoxes()[7] = new JumpBox(new Position(650, 125), 20, 5);
-        getJumpBoxes()[8] = new JumpBox(new Position(750, 125), 20, 5);
-        getJumpBoxes()[9] = new JumpBox(new Position(850, 125), 20, 5);
-        getJumpBoxes()[10] = new JumpBox(new Position(950, 125), 20, 5);
-        getJumpBoxes()[11] = new JumpBox(new Position(1050, 125), 20, 5);
-        getJumpBoxes()[12] = new JumpBox(new Position(1150, 125), 20, 5);
+        getJumpBoxes()[2] = new JumpBox(new Position(150, 125), 20, 5, 3);
+        getJumpBoxes()[3] = new JumpBox(new Position(250, 125), 20, 5, 2);
+        getJumpBoxes()[4] = new JumpBox(new Position(350, 125), 20, 5, 3);
+        getJumpBoxes()[5] = new JumpBox(new Position(450, 125), 20, 5, 2);
+        getJumpBoxes()[6] = new JumpBox(new Position(550, 125), 20, 5, 3);
+        getJumpBoxes()[7] = new JumpBox(new Position(650, 125), 20, 5, 2);
+        getJumpBoxes()[8] = new JumpBox(new Position(750, 125), 20, 5, 3);
+        getJumpBoxes()[9] = new JumpBox(new Position(850, 125), 20, 5, 2);
+        getJumpBoxes()[10] = new JumpBox(new Position(950, 125), 20, 5, 3);
+        getJumpBoxes()[11] = new JumpBox(new Position(1050, 125), 20, 5, 2);
+        getJumpBoxes()[12] = new JumpBox(new Position(1150, 125), 20, 5, 3);
         //key jumpbox
-        getJumpBoxes()[13] = new JumpBox(new Position(60, 295), 20, 5);
+        getJumpBoxes()[13] = new JumpBox(new Position(60, 295), 20, 5, 1);
         /////////////////////////////////////////////////////////////////////////////////////////
         getEnemies()[0] = new FixedPathEnemy(getPlatforms()[0].getX(),getPlatforms()[0].getY(),
                 getPlatforms()[0].getWidth(),getPlatforms()[0].getHeight(),

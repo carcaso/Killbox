@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Ellipse;
+import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
@@ -96,8 +97,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         if(enemy.getX() == maxX && !block1) {block1=true;}
         if (minX < maxX && !block1) {
 
-            pos.setX(getX() + 1);
-            dx = 1;
+            pos.setX(getX() + Var.ENEMY_SPEED);
+            dx = Var.ENEMY_SPEED;
             dy = 0;
             return;
 
@@ -106,9 +107,9 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         if (enemy.getY() == maxY && !block2 ) {block2=true;}
         if (minY < maxY && !block2 ) {
 
-            pos.setY(getY() + 1);
+            pos.setY(getY() + Var.ENEMY_SPEED);
             dx = 0;
-            dy = 1;
+            dy = Var.ENEMY_SPEED;
             return;
 
         }
@@ -116,8 +117,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         if (enemy.getX() == minX && !block3) {block3=true;}
         if (maxX > minX && !block3) {
 
-            pos.setX(getX() - 1);
-            dx = -1;
+            pos.setX(getX() - Var.ENEMY_SPEED);
+            dx = -Var.ENEMY_SPEED;
             dy = 0;
             return;
 
@@ -133,9 +134,9 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
         if ( maxY > minY && !block4) {
 
-            pos.setY(getY() - 1);
+            pos.setY(getY() - Var.ENEMY_SPEED);
             dx = 0;
-            dy = -1;
+            dy = -Var.ENEMY_SPEED;
         }
 
     }
@@ -152,25 +153,25 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
         if(enemy.getY() == maxY){block1 = true;}
         if(minY < maxY && !block1){
-            pos.setY(getY() + 1);
+            pos.setY(getY() + Var.ENEMY_SPEED);
             dx = 0;
-            dy = +1;
+            dy = Var.ENEMY_SPEED;
             return;
         }
 
         if(enemy.getX() == maxX){block2 = true;}
         if(minX < maxX && !block2){
-            pos.setX(getX() + 1);
-            dx = +1;
+            pos.setX(getX() + Var.ENEMY_SPEED);
+            dx = Var.ENEMY_SPEED;
             dy = 0;
             return;
         }
 
         if(enemy.getY() == minY) {block3 = true;}
         if(maxY > minY && !block3){
-            pos.setY(getY() - 1);
+            pos.setY(getY() - Var.ENEMY_SPEED);
             dx = 0;
-            dy = -1;
+            dy = -Var.ENEMY_SPEED;
             return;
         }
 
@@ -182,8 +183,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         }
 
         if(maxX > minX && !block4) {
-            pos.setX(getX() - 1);
-            dx = -1;
+            pos.setX(getX() - Var.ENEMY_SPEED);
+            dx = -Var.ENEMY_SPEED;
             dy = 0;
             return;
         }
@@ -196,16 +197,16 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
         if(enemy.getY() == end) {block1 = true;}
         if(start < end) {
-            pos.setY(getY() + 1);
-            dy = +1;
+            pos.setY(getY() + Var.ENEMY_SPEED);
+            dy = Var.ENEMY_SPEED;
             return;
         }
 
 
         if (enemy.getY() == start) {block1 = false;}
         if(end > start) {
-            pos.setY(getY() - 1);
-            dy = -1;
+            pos.setY(getY() - Var.ENEMY_SPEED);
+            dy = - Var.ENEMY_SPEED;
             return;
         }
 
@@ -219,15 +220,15 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
         if(enemy.getX() == end) {block1 = true;}
         if(start < end && !block1) {
-            pos.setX(getX() + 1);
-            dx = +1;
+            pos.setX(getX() + Var.ENEMY_SPEED);
+            dx = Var.ENEMY_SPEED;
             return;
         }
 
         if(enemy.getX() == start){block1 = false;}
         if(end > start && !block2) {
-            pos.setX(getX() - 1);
-            dx = -1;
+            pos.setX(getX() - Var.ENEMY_SPEED);
+            dx = -Var.ENEMY_SPEED;
             return;
         }
 
