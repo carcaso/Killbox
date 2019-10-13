@@ -21,9 +21,9 @@ public class Main {
                 }
                     g.init();
                     sound.playSound(100000, "music.wav");
-                    //Level1 level1 = new Level1();
-                    Level2 level2 = new Level2();
-                    g.start(level2);
+                    Level1 level1 = new Level1();
+                    //Level2 level2 = new Level2();
+                    g.start(level1);
 
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());

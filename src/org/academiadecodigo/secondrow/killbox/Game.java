@@ -38,9 +38,6 @@ public class Game {
             for (int i = 0; i < map.getKeys().length; i++) {
                 collisionDetector.checkCollision(map.getKeys()[i]);
             }
-            for (int i = 0; i < map.getEnemies().length; i++) {
-                collisionDetector.checkCollision(map.getEnemies()[i]);
-            }
 
             if (map.getDoor().isOpen()) {
                 if (collisionDetector.checkCollision(map.getDoor())) {
@@ -53,9 +50,13 @@ public class Game {
             }
 
             for (int i = 0; i < map.getEnemies().length; i++) {
+                collisionDetector.checkCollision(map.getEnemies()[i]);
                 map.getEnemies()[i].update();
                 map.getEnemies()[i].move();
                 map.getEnemies()[i].shot(p1.getX(), p1.getY());
+                if (collisionDetector.checkCollision(map.getEnemies()[i])) {
+                    break;
+                }
             }
 
             try {
