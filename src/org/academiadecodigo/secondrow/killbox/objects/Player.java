@@ -1,22 +1,18 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
-import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.graphics.Text;
 import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
-import org.academiadecodigo.secondrow.killbox.CollisionDetector;
 import org.academiadecodigo.secondrow.killbox.Var;
-
 
 public class Player implements Movable, KeyboardHandler {
 
     private Rectangle playerAvatar;
     private Keyboard keyboard;
     private boolean dead;
-    private Sound effects = new Sound();
+
 
     // Keybinds for playing movement
     private boolean keyD, keyA, keySpace;
@@ -35,10 +31,11 @@ public class Player implements Movable, KeyboardHandler {
     private int jumpInterval = -5;
     private boolean specialJump;
 
-    public Player(boolean specialJump) {
+    public Player(boolean specialJump, int x, int y){
         this.specialJump = specialJump;
         this.keyboard = new Keyboard(this);
-        playerAvatar = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+        playerAvatar = new Rectangle(x, y, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+
     }
 
     public void init() {
@@ -55,9 +52,6 @@ public class Player implements Movable, KeyboardHandler {
 
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
-
-
-
     }
 
     public void update(boolean[] bumps) {
@@ -87,7 +81,7 @@ public class Player implements Movable, KeyboardHandler {
                 isJumping = true;
             }
 
-            if ((playerAvatar.getY() == maxY || isBumpingBottom) && boosted) {
+            if ((playerAvatar.getY() == maxY  || isBumpingBottom) && boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
                 isJumping = true;
             }
@@ -126,8 +120,11 @@ public class Player implements Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 keySpace = true;
-                effects.playSound(0,"jump.wav");
                 break;
+            /*case KeyboardEvent.KEY_W:
+                boosted = true;
+                break;
+                */
         }
     }
 

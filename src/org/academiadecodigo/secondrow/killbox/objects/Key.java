@@ -14,6 +14,7 @@ public class Key implements Collidable {
     private boolean deleted;
     private Sound effects = new Sound();
 
+    /*
     public Key(Position position, Color color, Door door) {
         pos = position;
         key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -21,7 +22,7 @@ public class Key implements Collidable {
         key.fill();
         this.door = door;
     }
-
+    */
     /**
      * Default constructor
      */
@@ -50,6 +51,7 @@ public class Key implements Collidable {
         return SIZE;
     }
 
+    public void delete(){key.delete();}
 
     @Override
     public void performCollision() {
@@ -59,6 +61,7 @@ public class Key implements Collidable {
             door.openDoor();
             deleted = true;
         }
+
 
     }
 }
