@@ -5,36 +5,31 @@ import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 import org.academiadecodigo.secondrow.killbox.objects.Sound;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class JumpBox implements Collidable {
 
     private Position pos;
     private int width;
     private int height;
-    private Rectangle platform;
+    private Picture platform;
     private Sound effect = new Sound();
-    private int type;
 
-    public JumpBox(Position pos, int width, int height, int type) {
+    public JumpBox(Position pos, int width, int height) {
 
         this.pos = pos;
         this.width = width;
         this.height = height;
-        this.type = type;
 
-        platform = new Rectangle(pos.getX(), pos.getY(), width, height);
-
-        platform.setColor(Color.RED);
-        platform.fill();
+        platform = new Picture(pos.getX(), pos.getY(), "/Users/codecadet/Desktop/2D-Platform/resources/pictures" +
+                "/jumpBox.png");
+        platform.draw();
     }
 
     @Override
     public void performCollision() {
         // This method is not used.
-    }
-
-    public void delete(){
-        platform.delete();
+        effect.playSound(0,"boost.wav");
     }
 
     public int getWidth() {
@@ -53,8 +48,5 @@ public class JumpBox implements Collidable {
         return platform.getY();
     }
 
-    public int getType() {
-        return type;
-    }
 }
 

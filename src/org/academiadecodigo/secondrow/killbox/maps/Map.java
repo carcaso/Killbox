@@ -15,15 +15,13 @@ public abstract class Map {
     JumpBox[] jumpBoxes;
     Door door;
     Key[] keys;
-    Player player;
-
-    // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
+    Player player; // TODO: 10/10/2019 estamos a tentar dar acesso ao player a toda a gente.
     // TODO: 10/10/2019 criar uma classe para mensagens (init, press play) (end) (died)
     // TODO: 10/10/2019 add cell to map. Only platforms need to be inside these cells (touching)
     // TODO: 10/10/2019 player jump reset validar o landing (em vez da collision geral)
 
 
-    public Enemy[] getEnemies() {
+    public Enemy[] getEnemy() {
         return enemy;
     }
 
@@ -83,12 +81,6 @@ public abstract class Map {
         this.keys = key;
     }
 
-    public void setPlayer(Player player){
-
-        this.player = player;
-
-    }
-
     public Player getPlayer() {
         return player;
     }
@@ -96,30 +88,4 @@ public abstract class Map {
     public int numberOfKeys(){
         return keys.length;
     }
-
-    public void delete(Enemy[] enemies, Platform[] platforms, JumpBox[] jumpBoxes, Door door, Key[] keys){
-
-        for (int i = 0; i < enemies.length; i++) {
-            enemies[i].delete();
-        }
-
-        for (int i = 0; i < platforms.length; i++) {
-            platforms[i].delete();
-        }
-
-        for (int i = 0; i < jumpBoxes.length; i++) {
-            jumpBoxes[i].delete();
-        }
-
-        door.delete();
-
-        for (int i = 0; i < keys.length; i++) {
-
-            keys[i].delete();
-        }
-    }
-
-    public void draw(){}
-
 }
-

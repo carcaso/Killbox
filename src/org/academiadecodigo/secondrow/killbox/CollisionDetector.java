@@ -2,7 +2,10 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
+import org.academiadecodigo.secondrow.killbox.objects.Door;
+import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
+import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
@@ -10,18 +13,6 @@ public class CollisionDetector {
 
     Map map;
     Player player;
-
-    // Player information
-    private int playerStartX;
-    private int playerStartY;
-    private int playerEndX;
-    private int playerEndY;
-
-    //Object information
-    private int objectStartX;
-    private int objectStartY;
-    private int objectEndX;
-    private int objectEndY;
 
     public CollisionDetector(Map map, Player player) {
         this.player = player;
@@ -46,16 +37,18 @@ public class CollisionDetector {
             int playerEndX = player.getX() + Var.PLAYER_WIDTH;
             int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-            getPositions(objects[i]);
+            //Object information
+            int objectStartX = objects[i].getX();
+            int objectStartY = objects[i].getY();
+            int objectEndX = objects[i].getX() + objects[i].getWidth();
+            int objectEndY = objects[i].getY() + objects[i].getHeight();
 
             if ((playerEndX > objectStartX && playerStartX < objectEndX)) {
 
-                // Colliding bottom
                 if (playerEndY == objectStartY) {
                     isLanding = true;
                 }
 
-                // Colliding top
                 if (playerStartY == objectEndY) {
                     isBumpingHead = true;
                 }
@@ -64,7 +57,6 @@ public class CollisionDetector {
             // Checks if player is in between a platform and sees if height is the same.
             if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
                     || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
-
                 if (playerEndX == objectStartX) {
                     isBumpingRight = true;
                 }
@@ -91,9 +83,17 @@ public class CollisionDetector {
      */
     public boolean checkCollision(Collidable object) {
 
-        getPositions(object);
+        int playerStartX = player.getX();
+        int playerStartY = player.getY();
+        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
+        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-        // TODO: 2019-10-11 clean this mess
+        //Object information
+        int objectStartX = object.getX();
+        int objectStartY = object.getY();
+        int objectEndX = object.getX() + object.getWidth();
+        int objectEndY = object.getY() + object.getHeight();
+
         if (
                 ((playerStartX >= objectStartX && playerStartX <= objectEndX
                         && playerStartY >= objectStartY && playerStartY <= objectEndY)
@@ -120,25 +120,10 @@ public class CollisionDetector {
             object.performCollision();
 
             if (object instanceof JumpBox) {
-                JumpBox jumpBox = (JumpBox) object;
-                player.boost(jumpBox);
+                player.setBoosted(true);
             }
             return true;
         }
         return false;
-    }
-
-
-    public void getPositions(Collidable object) {
-        playerStartX = player.getX();
-        playerStartY = player.getY();
-        playerEndX = player.getX() + Var.PLAYER_WIDTH;
-        playerEndY = player.getY() + Var.PLAYER_HEIGHT;
-
-        //Object information
-        objectStartX = object.getX();
-        objectStartY = object.getY();
-        objectEndX = object.getX() + object.getWidth();
-        objectEndY = object.getY() + object.getHeight();
     }
 }

@@ -2,19 +2,19 @@ package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Ellipse;
-import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
     private int SIZE = 40;
 
-    private int distanceFromPlatform = 15 + SIZE;
+    private int distanceFromPlataform = 15 + 40;
 
     private Position pos;
-    private Ellipse enemy;
+    private Picture enemy;
 
     private int platformX;
     private int platformY;
@@ -29,39 +29,16 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
     private int dx = 0;
     private int dy = 0;
 
-    private boolean directionRight = false;
-    private boolean directionLeft = false;
-    private boolean horizontal = false;
-    private boolean vertical = false;
-
-    private int end;
-    int start;
-
-    public FixedPathEnemy(int platformX, int platformY, int platformWidth, int platformHeight, boolean directionLeft, boolean directionRight) {
+    public FixedPathEnemy(int platformX, int platformY, int platformWidth, int platformHeight) {
         this.platformX = platformX;
         this.platformY = platformY;
         this.platformWidth = platformWidth;
         this.platformHeight = platformHeight;
-        this.directionLeft = directionLeft;
-        this.directionRight = directionRight;
 
-        pos = new Position(platformX - distanceFromPlatform, platformY - distanceFromPlatform);
-        enemy = new Ellipse(pos.getX(), pos.getY(), SIZE, SIZE);
-        enemy.setColor(Color.ORANGE);
-        enemy.fill();
-    }
-
-    public FixedPathEnemy(int x, int y, int endOfPath, boolean horizontal, boolean vertical){
-
-        this.end = endOfPath;
-        this.horizontal = horizontal;
-        this.vertical = vertical;
-
-        pos = new Position(x, y);
-        enemy = new Ellipse(x, y, SIZE, SIZE);
-        enemy.setColor(Color.ORANGE);
-        enemy.fill();
-        start = pos.getX();
+        pos = new Position(platformX - distanceFromPlataform, platformY - distanceFromPlataform);
+        enemy = new Picture(pos.getX(), pos.getY(), "/Users/codecadet/Desktop/2D-Platform/resources/pictures/" +
+                "enemy.png");
+        enemy.draw();
     }
 
 
@@ -73,166 +50,79 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
     @Override
     public void update(){
 
-        if (directionRight) {moveRight();}
+        //use position
+        boolean directionRight;
+        boolean directionLeft;
 
-        if (directionLeft) {moveLeft();}
-
-        if(horizontal) { moveHorizontal();}
-
-        if (vertical) { moveVertical();}
-
-    }
-
-    public void moveRight(){
-
-        int minX = platformX - distanceFromPlatform;
+        //int minX = pos.getX();
+        int minX = platformX - distanceFromPlataform;
 
         //int minY = pos.getY();
-        int minY = platformY - distanceFromPlatform;
+        int minY = platformY - distanceFromPlataform;
 
-        int maxX = minX + 2 * (distanceFromPlatform) + platformWidth - 40;
-        int maxY = minY + 2 * (distanceFromPlatform) + platformHeight - 40;
+        int maxX = minX + 2 * (distanceFromPlataform) + platformWidth - 40;
+        int maxY = minY + 2 * (distanceFromPlataform) + platformHeight - 40;
+
+        //to introduce as a parameter in fixed-path-enemy constructor
+        directionRight = true;
+
+        //move to right
+        if (directionRight) {
 
 
-        if(enemy.getX() == maxX && !block1) {block1=true;}
-        if (minX < maxX && !block1) {
+            //guardar pos
+            if(enemy.getX() == maxX && !block1) {block1=true;}
+            if (minX < maxX && !block1) {
 
-            pos.setX(getX() + Var.ENEMY_SPEED);
-            dx = Var.ENEMY_SPEED;
-            dy = 0;
-            return;
+                pos.setX(getX() + 1);
+                dx = 1;
+                dy = 0;
+                return;
 
-        }
+            }
 
-        if (enemy.getY() == maxY && !block2 ) {block2=true;}
-        if (minY < maxY && !block2 ) {
+            if (enemy.getY() == maxY && !block2 ) {block2=true;}
+            if (minY < maxY && !block2 ) {
 
-            pos.setY(getY() + Var.ENEMY_SPEED);
-            dx = 0;
-            dy = Var.ENEMY_SPEED;
-            return;
+                pos.setY(getY() + 1);
+                dx = 0;
+                dy = 1;
+                return;
 
-        }
+            }
 
-        if (enemy.getX() == minX && !block3) {block3=true;}
-        if (maxX > minX && !block3) {
+            if (enemy.getX() == minX && !block3) {block3=true;}
+            if (maxX > minX && !block3) {
 
-            pos.setX(getX() - Var.ENEMY_SPEED);
-            dx = -Var.ENEMY_SPEED;
-            dy = 0;
-            return;
+                pos.setX(getX() - 1);
+                dx = -1;
+                dy = 0;
+                return;
 
-        }
+            }
 
-        if (enemy.getY() == minY && !block4) {
+            if (enemy.getY() == minY && !block4) {
 
-            block1 = false;
-            block2 = false;
-            block3 = false;
-            block4 = false;
-        }
+                block1 = false;
+                block2 = false;
+                block3 = false;
+                block4 = false;
+            }
 
-        if ( maxY > minY && !block4) {
+            if ( maxY > minY && !block4) {
 
-            pos.setY(getY() - Var.ENEMY_SPEED);
-            dx = 0;
-            dy = -Var.ENEMY_SPEED;
-        }
+                pos.setY(getY() - 1);
+                dx = 0;
+                dy = -1;
+            }
 
-    }
 
-    public void moveLeft(){
 
-        int minX = platformX - distanceFromPlatform;
-
-        //int minY = pos.getY();
-        int minY = platformY - distanceFromPlatform;
-
-        int maxX = minX + 2 * (distanceFromPlatform) + platformWidth - 40;
-        int maxY = minY + 2 * (distanceFromPlatform) + platformHeight - 40;
-
-        if(enemy.getY() == maxY){block1 = true;}
-        if(minY < maxY && !block1){
-            pos.setY(getY() + Var.ENEMY_SPEED);
-            dx = 0;
-            dy = Var.ENEMY_SPEED;
-            return;
-        }
-
-        if(enemy.getX() == maxX){block2 = true;}
-        if(minX < maxX && !block2){
-            pos.setX(getX() + Var.ENEMY_SPEED);
-            dx = Var.ENEMY_SPEED;
-            dy = 0;
-            return;
-        }
-
-        if(enemy.getY() == minY) {block3 = true;}
-        if(maxY > minY && !block3){
-            pos.setY(getY() - Var.ENEMY_SPEED);
-            dx = 0;
-            dy = -Var.ENEMY_SPEED;
-            return;
-        }
-
-        if(enemy.getX() == minX){
-            block1 = false;
-            block2 = false;
-            block3 = false;
-            block4 = false;
-        }
-
-        if(maxX > minX && !block4) {
-            pos.setX(getX() - Var.ENEMY_SPEED);
-            dx = -Var.ENEMY_SPEED;
-            dy = 0;
-            return;
         }
 
     }
 
-    public void moveVertical(){
 
-        int start = pos.getY();
-
-        if(enemy.getY() == end) {block1 = true;}
-        if(start < end) {
-            pos.setY(getY() + Var.ENEMY_SPEED);
-            dy = Var.ENEMY_SPEED;
-            return;
-        }
-
-
-        if (enemy.getY() == start) {block1 = false;}
-        if(end > start) {
-            pos.setY(getY() - Var.ENEMY_SPEED);
-            dy = - Var.ENEMY_SPEED;
-            return;
-        }
-
-
-    }
-
-    public void moveHorizontal(){
-
-
-
-
-        if(enemy.getX() == end) {block1 = true;}
-        if(start < end && !block1) {
-            pos.setX(getX() + Var.ENEMY_SPEED);
-            dx = Var.ENEMY_SPEED;
-            return;
-        }
-
-        if(enemy.getX() == start){block1 = false;}
-        if(end > start && !block2) {
-            pos.setX(getX() - Var.ENEMY_SPEED);
-            dx = -Var.ENEMY_SPEED;
-            return;
-        }
-
-    }
 
     @Override
     public void performCollision() {
@@ -259,12 +149,6 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         return pos.getY();
     }
 
-    @Override
-    public void delete(){
-
-        enemy.delete();
-
-    }
 
 }
 

@@ -7,30 +7,28 @@ import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Key implements Collidable {
 
-    private Rectangle key;
     private Position pos;
     public static final int SIZE = 15;
     private Door door;
     private boolean deleted;
     private Sound effects = new Sound();
+    private Picture key;
 
-    /*
     public Key(Position position, Color color, Door door) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-        key.setColor(color);
-        key.fill();
+        //key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+        //key.setColor(color);
+        //key.fill();
         this.door = door;
     }
-    */
+
     /**
      * Default constructor
      */
     public Key(Position position, Door door) {
         pos = position;
-        key = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-        key.setColor(Color.YELLOW);
-        key.fill();
+        key = new Picture(pos.getX(), pos.getY(), "/Users/codecadet/Desktop/2D-Platform/resources/pictures/key2.png");
+        key.draw();
         this.door = door;
     }
 
@@ -51,7 +49,6 @@ public class Key implements Collidable {
         return SIZE;
     }
 
-    public void delete(){key.delete();}
 
     @Override
     public void performCollision() {
@@ -61,5 +58,8 @@ public class Key implements Collidable {
             door.openDoor();
             deleted = true;
         }
+        key.delete();
+        door.openDoor();
     }
+
 }

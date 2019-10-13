@@ -5,15 +5,4 @@ public class InfoMessage {
     public void show() {
 
     }
-
-    public void wonMessage() {
-
-
-
-
-
-
-
-    }
-
 }
