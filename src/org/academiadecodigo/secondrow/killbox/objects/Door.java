@@ -26,6 +26,9 @@ public class Door implements Collidable {
         return open;
     }
 
+    public void delete(){door.delete();}
+
+
     public void openDoor() {
 
         if(howManyToOpen != totalButton){

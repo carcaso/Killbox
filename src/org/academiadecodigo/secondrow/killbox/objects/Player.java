@@ -41,6 +41,13 @@ public class Player implements Movable, KeyboardHandler {
         playerAvatar = new Rectangle(Var.PADDING + Var.WALL_PADDING + 700, 200, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
     }
 
+    public Player(boolean specialJump, int x, int y){
+        this.specialJump = specialJump;
+        this.keyboard = new Keyboard(this);
+        playerAvatar = new Rectangle(x, y, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+
+    }
+
     public void init() {
         playerAvatar.fill();
 
@@ -55,9 +62,6 @@ public class Player implements Movable, KeyboardHandler {
 
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_W, KeyboardEventType.KEY_RELEASED);
-
-
-
     }
 
     public void update(boolean[] bumps) {
@@ -87,7 +91,7 @@ public class Player implements Movable, KeyboardHandler {
                 isJumping = true;
             }
 
-            if ((playerAvatar.getY() == maxY || isBumpingBottom) && boosted) {
+            if ((playerAvatar.getY() == maxY  || isBumpingBottom) && boosted) {
                 maxJump = Var.PLAYER_JUMP_HEIGHT * 4;
                 isJumping = true;
             }
@@ -98,7 +102,7 @@ public class Player implements Movable, KeyboardHandler {
                     boosted = false;
                     maxJump = 0;
                     dy = 0;
-                    effects.playSound(0,"jump.wav");
+                    //effects.playSound(0,"jump.wav");
                     return;
                 }
 

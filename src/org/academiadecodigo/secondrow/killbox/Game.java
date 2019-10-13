@@ -13,6 +13,7 @@ public class Game {
     private CollisionDetector collisionDetector;
 
     public void init() {
+
         // Create walls (If later they change by level, move this code).
         walls = new Rectangle(Var.PADDING, Var.PADDING, Var.WIDTH, Var.HEIGHT);
         walls.setColor(Color.DARK_GRAY);
@@ -22,13 +23,12 @@ public class Game {
                 Var.WIDTH - 2 * Var.CELL_SIZE, Var.HEIGHT - 2 * Var.CELL_SIZE);
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
-
-        p1 = new Player(true);
-        p1.init();
-
     }
 
     public void start(Map map) {
+
+        p1 = map.getPlayer();
+
         collisionDetector = new CollisionDetector(map, p1);
 
         while (true) {
@@ -38,8 +38,8 @@ public class Game {
             for (int i = 0; i < map.getKeys().length; i++) {
                 collisionDetector.checkCollision(map.getKeys()[i]);
             }
-            for (int i = 0; i < map.getEnemy().length; i++) {
-                collisionDetector.checkCollision(map.getEnemy()[i]);
+            for (int i = 0; i < map.getEnemies().length; i++) {
+                collisionDetector.checkCollision(map.getEnemies()[i]);
             }
 
             if (map.getDoor().isOpen()) {
@@ -52,10 +52,10 @@ public class Game {
                 collisionDetector.checkCollision(map.getJumpBoxes()[i]);
             }
 
-            for (int i = 0; i < map.getEnemy().length; i++) {
-                map.getEnemy()[i].update();
-                map.getEnemy()[i].move();
-                map.getEnemy()[i].shot(p1.getX(), p1.getY());
+            for (int i = 0; i < map.getEnemies().length; i++) {
+                map.getEnemies()[i].update();
+                map.getEnemies()[i].move();
+                map.getEnemies()[i].shot(p1.getX(), p1.getY());
             }
 
             try {

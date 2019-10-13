@@ -2,6 +2,7 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.killbox.maps.Level1;
 import org.academiadecodigo.secondrow.killbox.objects.Menu;
+import org.academiadecodigo.secondrow.killbox.maps.Level2;
 import org.academiadecodigo.secondrow.killbox.objects.Sound;
 
 public class Main {
@@ -20,8 +21,9 @@ public class Main {
                 }
                     g.init();
                     sound.playSound(100000, "music.wav");
-                    Level1 level1 = new Level1();
-                    g.start(level1);
+                    //Level1 level1 = new Level1();
+                    Level2 level2 = new Level2();
+                    g.start(level2);
 
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());

@@ -119,7 +119,7 @@ public class CollisionDetector {
 
             if (object instanceof JumpBox) {
                 player.setBoosted(true);
-                effect.playSound(0,"boost.wav");
+                //effect.playSound(0,"boost.wav");
             }
             return true;
         }
