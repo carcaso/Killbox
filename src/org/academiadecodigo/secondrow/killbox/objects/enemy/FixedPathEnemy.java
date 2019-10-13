@@ -73,8 +73,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
             if(enemy.getX() == maxX && !block1) {block1=true;}
             if (minX < maxX && !block1) {
 
-                pos.setX(getX() + 1);
-                dx = 1;
+                pos.setX(getX() + 5);
+                dx = 5;
                 dy = 0;
                 return;
 
@@ -83,9 +83,9 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
             if (enemy.getY() == maxY && !block2 ) {block2=true;}
             if (minY < maxY && !block2 ) {
 
-                pos.setY(getY() + 1);
+                pos.setY(getY() + 5);
                 dx = 0;
-                dy = 1;
+                dy = 5;
                 return;
 
             }
@@ -93,8 +93,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
             if (enemy.getX() == minX && !block3) {block3=true;}
             if (maxX > minX && !block3) {
 
-                pos.setX(getX() - 1);
-                dx = -1;
+                pos.setX(getX() - 5);
+                dx = -5;
                 dy = 0;
                 return;
 
@@ -110,9 +110,9 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
             if ( maxY > minY && !block4) {
 
-                pos.setY(getY() - 1);
+                pos.setY(getY() - 5);
                 dx = 0;
-                dy = -1;
+                dy = -5;
             }
 
 

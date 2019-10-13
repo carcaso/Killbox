@@ -23,7 +23,7 @@ public class Game {
         background.setColor(Color.LIGHT_GRAY);
         background.fill();
 
-        p1 = new Player(true);
+        p1 = new Player(false);
         p1.init();
     }
 
@@ -32,18 +32,24 @@ public class Game {
 
         while (true) {
             p1.update(collisionDetector.checkCollision(map.getPlatforms()));
-            p1.move();
+            p1.move(map.getPlatforms());
 
             for (int i = 0; i < map.getKeys().length; i++) {
                 collisionDetector.checkCollision(map.getKeys()[i]);
             }
+
+            /*
             for (int i = 0; i < map.getEnemy().length; i++) {
                 collisionDetector.checkCollision(map.getEnemy()[i]);
             }
+            */
 
+            /*
             if(collisionDetector.checkCollision(map.getDoor())) {
+                collisionDetector.checkCollision(map.getDoor());
                 break;
             }
+            */
 
             for (int i = 0; i < map.getJumpBoxes().length; i++) {
                 collisionDetector.checkCollision(map.getJumpBoxes()[i]);

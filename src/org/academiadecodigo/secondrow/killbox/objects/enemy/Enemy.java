@@ -8,6 +8,7 @@ import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
 public class Enemy implements Movable, Collidable {
 
@@ -44,6 +45,11 @@ public class Enemy implements Movable, Collidable {
 
     @Override
     public void move() {
+
+    }
+
+    @Override
+    public void move(Platform[] platforms) {
 
     }
 

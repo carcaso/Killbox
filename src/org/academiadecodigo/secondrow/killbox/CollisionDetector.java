@@ -2,10 +2,7 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
-import org.academiadecodigo.secondrow.killbox.objects.Door;
-import org.academiadecodigo.secondrow.killbox.objects.Key;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
-import org.academiadecodigo.secondrow.killbox.objects.enemy.Enemy;
 import org.academiadecodigo.secondrow.killbox.objects.platform.JumpBox;
 import org.academiadecodigo.secondrow.killbox.objects.platform.Platform;
 
@@ -13,6 +10,18 @@ public class CollisionDetector {
 
     Map map;
     Player player;
+
+    // Player information
+    private int playerStartX;
+    private int playerStartY;
+    private int playerEndX;
+    private int playerEndY;
+
+    //Object information
+    private int objectStartX;
+    private int objectStartY;
+    private int objectEndX;
+    private int objectEndY;
 
     public CollisionDetector(Map map, Player player) {
         this.player = player;
@@ -31,24 +40,17 @@ public class CollisionDetector {
         boolean isBumpingLeft = false;
 
         for (int i = 0; i < objects.length; i++) {
-            //PLayerInformation
-            int playerStartX = player.getX();
-            int playerStartY = player.getY();
-            int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-            int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-            //Object information
-            int objectStartX = objects[i].getX();
-            int objectStartY = objects[i].getY();
-            int objectEndX = objects[i].getX() + objects[i].getWidth();
-            int objectEndY = objects[i].getY() + objects[i].getHeight();
+            getPositions(objects[i]);
 
             if ((playerEndX > objectStartX && playerStartX < objectEndX)) {
 
+                // Colliding bottom
                 if (playerEndY == objectStartY) {
                     isLanding = true;
                 }
 
+                // Colliding top
                 if (playerStartY == objectEndY) {
                     isBumpingHead = true;
                 }
@@ -57,6 +59,7 @@ public class CollisionDetector {
             // Checks if player is in between a platform and sees if height is the same.
             if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
                     || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
+
                 if (playerEndX == objectStartX) {
                     isBumpingRight = true;
                 }
@@ -73,6 +76,7 @@ public class CollisionDetector {
         }
 
         boolean[] ret = {isBumpingHead, isLanding, isBumpingRight, isBumpingLeft};
+
         return ret;
     }
 
@@ -83,17 +87,10 @@ public class CollisionDetector {
      */
     public boolean checkCollision(Collidable object) {
 
-        int playerStartX = player.getX();
-        int playerStartY = player.getY();
-        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
-        //Object information
-        int objectStartX = object.getX();
-        int objectStartY = object.getY();
-        int objectEndX = object.getX() + object.getWidth();
-        int objectEndY = object.getY() + object.getHeight();
+        getPositions(object);
 
+        // TODO: 2019-10-11 clean this mess
         if (
                 ((playerStartX >= objectStartX && playerStartX <= objectEndX
                         && playerStartY >= objectStartY && playerStartY <= objectEndY)
@@ -120,110 +117,25 @@ public class CollisionDetector {
             object.performCollision();
 
             if (object instanceof JumpBox) {
-                player.setBoosted(true);
+                player.boost();
             }
             return true;
         }
+
         return false;
     }
 
 
-
-    /*public void checkCollisionEnemies(Enemy[] enemies) {
-
-        int playerStartX = player.getX();
-        int playerStartY = player.getY();
-        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
-        boolean youDEAD = false;
-
-
-        for (int i = 0; i < enemies.length; i++) {
-
-
-            int enemyStartX = enemies[i].getX();
-            int enemyStartY = enemies[i].getY();
-            int enemyEndX = enemies[i].getX() + enemies[i].getWidth();
-            int enemyEndY = enemies[i].getY() + enemies[i].getHeight();
-
-
-            if ((playerEndX > enemyStartX && playerStartX < enemyEndX)) {
-
-                if (playerEndY == enemyStartY) {
-                    youDEAD = true;
-                }
-
-                if (playerStartY == enemyEndY) {
-                    youDEAD = true;
-                }
-            }
-
-            if ((playerStartY >= enemyStartY && playerStartY <= enemyEndY)
-                    || (playerEndY >= enemyStartY && playerEndY <= enemyEndY)) {
-
-                if (playerEndX == enemyStartX) {
-                    System.out.println("right");
-                    youDEAD = true;
-                }
-
-                if (playerStartX == enemyEndX) {
-                    System.out.println("left");
-                    youDEAD = true;
-                }
-
-                if (youDEAD) {
-                    enemies[i].performCollision();
-                }
-            }
-        }
-    }*/
-
-    public void checkCollisions(Collidable object) {
-
-        //Player information
-        int playerStartX = player.getX();
-        int playerStartY = player.getY();
-        int playerEndX = player.getX() + Var.PLAYER_WIDTH;
-        int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
+    public void getPositions(Collidable object) {
+        playerStartX = player.getX();
+        playerStartY = player.getY();
+        playerEndX = player.getX() + Var.PLAYER_WIDTH;
+        playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
         //Object information
-        int objectStartX = object.getX();
-        int objectStartY = object.getY();
-        int objectEndX = object.getX() + object.getWidth();
-        int objectEndY = object.getY() + object.getHeight();
-
-        if (object instanceof Door) {
-
-            Door door = (Door) object;
-
-            if (door.isOpen()) {
-                if ((playerEndX > objectStartX && playerStartX < objectEndX)) {
-
-                    if (playerEndY == objectStartY) {
-                        System.out.println("Collision");
-                        object.performCollision();
-                    }
-
-                    if (playerStartY == objectEndY) {
-                        System.out.println("Collision");
-                        object.performCollision();
-                    }
-                }
-
-                // Checks if player is in between a platform and sees if height is the same.
-                if ((playerStartY >= objectStartY && playerStartY <= objectEndY)
-                        || (playerEndY >= objectStartY && playerEndY <= objectEndY)) {
-                    if (playerEndX == objectStartX) {
-                        System.out.println("Collision");
-                        object.performCollision();
-                    }
-
-                    if (playerStartX == objectEndX) {
-                        System.out.println("Collision");
-                        object.performCollision();
-                    }
-                }
-            }
-        }
+        objectStartX = object.getX();
+        objectStartY = object.getY();
+        objectEndX = object.getX() + object.getWidth();
+        objectEndY = object.getY() + object.getHeight();
     }
 }

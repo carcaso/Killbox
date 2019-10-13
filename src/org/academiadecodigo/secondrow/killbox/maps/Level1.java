@@ -16,7 +16,7 @@ public class Level1 extends Map {
     // TODO: 06/10/2019 Add walls to level.
     // 2 plats, 1 jump, 1 door, 1 enemy, 1 keys
     public Level1() {
-        setPlatforms(new Platform[2]);
+        setPlatforms(new Platform[3]);
         setKeys(new Key[1]);
         setEnemy(new Enemy[2]); //changed
         setJumpBoxes(new JumpBox[2]);
@@ -24,13 +24,17 @@ public class Level1 extends Map {
         // Door platform
         getPlatforms()[0] = new Platform(
                 new Position(Var.PADDING + Var.WIDTH - Var.WALL_PADDING - 6 * Var.CELL_SIZE,
-                        7 * Var.CELL_SIZE),
-                6 * Var.CELL_SIZE, Var.CELL_SIZE);
+                        300),
+                6 * Var.CELL_SIZE, 50);
+
+        // Door
         setDoor(new Door(new Position(Var.WIDTH - Var.DOOR_WIDTH - 40,
                 getPlatforms()[0].getY() - Var.DOOR_HEIGHT)));
 
-        // middle platform<
+        // middle platform
         getPlatforms()[1] = new Platform(Var.CELL_SIZE * 10, Var.CELL_SIZE * 2);
+
+        getPlatforms()[2] = new Platform(new Position(200, Var.HEIGHT - Var.WALL_PADDING - 300), 50, 300);
 
         getJumpBoxes()[0] = new JumpBox(new Position(425, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
         getJumpBoxes()[1] = new JumpBox(new Position(1025, Var.HEIGHT - Var.WALL_PADDING), 20, 10);
@@ -44,8 +48,5 @@ public class Level1 extends Map {
                 getPlatforms()[1].getWidth(), getPlatforms()[1].getHeight());
 
         getEnemy()[1] = new Bomb(700, 200);
-
-
     }
-
 }

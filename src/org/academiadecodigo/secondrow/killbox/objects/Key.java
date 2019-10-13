@@ -50,12 +50,9 @@ public class Key implements Collidable {
         return SIZE;
     }
 
-
     @Override
     public void performCollision() {
         key.delete();
         door.openDoor();
     }
-
-
 }
