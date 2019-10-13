@@ -18,16 +18,11 @@ public class Main {
                 while (!menu.getStart())   {
                     Thread.sleep(10);
                 }
-
-                while (!menu.getPaused()) {
-                    if(menu.getPaused()){
-                        Thread.sleep(10);
-                    }
                     g.init();
-                    sound.playSound();
+                    sound.playSound(100000, "music.wav");
                     Level1 level1 = new Level1();
                     g.start(level1);
-                }
+
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }

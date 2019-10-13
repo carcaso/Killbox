@@ -12,6 +12,7 @@ public class Key implements Collidable {
     public static final int SIZE = 15;
     private Door door;
     private boolean deleted;
+    private Sound effects = new Sound();
 
     public Key(Position position, Color color, Door door) {
         pos = position;
@@ -52,10 +53,11 @@ public class Key implements Collidable {
 
     @Override
     public void performCollision() {
-        if(!deleted) {
+        if (!deleted) {
             key.delete();
+            effects.playSound(0,"key.wav");
             door.openDoor();
-            deleted=true;
+            deleted = true;
         }
 
     }

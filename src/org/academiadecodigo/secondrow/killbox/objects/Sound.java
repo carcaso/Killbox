@@ -8,27 +8,21 @@ import java.io.File;
 public class Sound {
 
     private Clip clip;
-    private int size;
 
-    public void playSound() {
+    public void playSound(int count, String pathname) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-                    new File("music.wav").getAbsoluteFile());
+                    new File(pathname).getAbsoluteFile());
 
-            System.out.println(size);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-            clip.loop(1000000);
+            clip.loop(count);
 
         } catch (Exception ex) {
             System.out.println("Error with playing sound.");
             ex.printStackTrace();
         }
 
-    }
-
-    public long getSize(){
-        return size;
     }
 
 }

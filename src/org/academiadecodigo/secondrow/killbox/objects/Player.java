@@ -16,7 +16,7 @@ public class Player implements Movable, KeyboardHandler {
     private Rectangle playerAvatar;
     private Keyboard keyboard;
     private boolean dead;
-
+    private Sound effects = new Sound();
 
     // Keybinds for playing movement
     private boolean keyD, keyA, keySpace;
@@ -126,9 +126,11 @@ public class Player implements Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 keySpace = true;
+                effects.playSound(0,"jump.wav");
                 break;
             case KeyboardEvent.KEY_W:
                 boosted = true;
+                effects.playSound(0,"boost.wav");
                 break;
         }
     }
