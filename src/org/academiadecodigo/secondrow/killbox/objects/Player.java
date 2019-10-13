@@ -191,55 +191,56 @@ public class Player implements Movable, KeyboardHandler {
         boolean xLeft = false;
         boolean xRight = false;
 
-        if (xMovement != 0) {
 
-            for (Platform platform : platforms) {
+        for (Platform platform : platforms) {
 
-                objectStartX = platform.getX();
-                objectStartY = platform.getY();
-                objectEndX = objectStartX + platform.getWidth();
-                objectEndY = objectStartY + platform.getHeight();
+            objectStartX = platform.getX();
+            objectStartY = platform.getY();
+            objectEndX = objectStartX + platform.getWidth();
+            objectEndY = objectStartY + platform.getHeight();
 
-                // Checks if player collides on Y axis
-                if (playerEndY > objectStartY && playerStartY < objectEndY) {
+            // Checks if player collides on Y axis
+            if (playerEndY > objectStartY && playerStartY < objectEndY) {
 
-                    // Left to right
-                    if (playerEndX > objectStartX
-                            && playerEndX < objectEndX
-                            && ogPlayerEndX < objectStartX) {
+                // Left to right
+                if ((playerEndX > objectStartX)
+                        && (playerEndX < objectEndX)
+                        && (ogPlayerEndX < objectStartX)) {
 
-                        System.out.println("SPAM LEFT TO RIGHT " + xMovement);
-                        xMovement -= (playerEndX - objectStartX - 1);
-                        playerAvatar.translate(xMovement, 0);
-                        xMovement = 0;
-                        playerStartX = this.getX();
-                        playerEndX = this.getX() + Var.PLAYER_HEIGHT;
-                        yCeil = true;
-                        yFloor = true;
-                    }
+                    xMovement = -10;
+                    playerAvatar.translate(xMovement, 0);
 
-                    // Right to left
-                    if (playerStartX <= objectEndX
-                            && playerStartX > objectStartX
-                            && ogPlayerStartX > objectEndX) {
+                    System.out.println("SPAM LEFT TO RIGHT " + xMovement);
 
-                        xMovement += (objectEndX - playerStartX + 1);
-                        playerAvatar.translate(xMovement, 0);
-                        xMovement = 0;
-                        playerStartX = this.getX();
-                        playerEndX = this.getX() + Var.PLAYER_HEIGHT;
-                    }
+                    xMovement = 0;
+                    yMovement = 0;
+                    playerStartX = this.getX();
+                    playerEndX = this.getX() + Var.PLAYER_HEIGHT;
+                }
 
-                    if (Math.abs(xMovement) > 50) {
-                        System.out.println(timeFormat.format(timestamp) + ": X TRANSPORTING");
-                        xMovement = 0;
-                    }
+                // Right to left
+                if (playerStartX <= objectEndX
+                        && playerStartX > objectStartX
+                        && ogPlayerStartX > objectEndX) {
+
+                    xMovement += (objectEndX - playerStartX + 1);
+                    playerAvatar.translate(xMovement, 0);
+                    System.out.println("Translated: " + xMovement);
+                    xMovement = 0;
+                    playerStartX = this.getX();
+                    playerEndX = this.getX() + Var.PLAYER_HEIGHT;
+                }
+
+                if (Math.abs(xMovement) > 50) {
+                    System.out.println(timeFormat.format(timestamp) + ": X TRANSPORTING");
+                    xMovement = 0;
                 }
             }
         }
 
-        // Check movement on the Y axis
         if (yMovement != 0) {
+
+            // Check movement on the Y axis
 
             for (Platform platform : platforms) {
 
@@ -249,15 +250,12 @@ public class Player implements Movable, KeyboardHandler {
                 objectEndY = objectStartY + platform.getHeight();
 
                 // Check if player collides on the X axis
-                if (playerEndX >= objectStartX && playerStartX <= objectEndX) {
+                if (playerEndX > objectStartX && playerStartX < objectEndX) {
 
-                    if (playerEndY > objectStartY && playerEndY < objectEndY
-                            && !(yCeil || yFloor)) {
-
-                        System.out.println("GOING UP");
+                    if (playerEndY > objectStartY && playerEndY < objectEndY) {
 
                         yMovement -= (playerEndY - objectStartY);
-                        playerAvatar.translate(0, yMovement );
+                        playerAvatar.translate(0, yMovement);
                         yMovement = 0;
                         playerStartY = this.getY();
                         playerEndY = this.getY() + Var.PLAYER_HEIGHT;
@@ -281,7 +279,6 @@ public class Player implements Movable, KeyboardHandler {
                 }
             }
         }
-
         // Move our player
         playerAvatar.translate(xMovement, yMovement);
 
