@@ -128,10 +128,6 @@ public class Player implements Movable, KeyboardHandler {
                 keySpace = true;
                 effects.playSound(0,"jump.wav");
                 break;
-            case KeyboardEvent.KEY_W:
-                boosted = true;
-                effects.playSound(0,"boost.wav");
-                break;
         }
     }
 

@@ -4,6 +4,7 @@ import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.killbox.objects.Sound;
 
 public class JumpBox implements Collidable {
 
@@ -11,6 +12,7 @@ public class JumpBox implements Collidable {
     private int width;
     private int height;
     private Rectangle platform;
+    private Sound effect = new Sound();
 
     public JumpBox(Position pos, int width, int height) {
 
@@ -27,6 +29,7 @@ public class JumpBox implements Collidable {
     @Override
     public void performCollision() {
         // This method is not used.
+        effect.playSound(0,"boost.wav");
     }
 
     public int getWidth() {
