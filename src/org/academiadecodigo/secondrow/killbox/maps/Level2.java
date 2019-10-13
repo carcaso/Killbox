@@ -20,8 +20,14 @@ public class Level2 extends Map{
         setKeys(new Key[2]);
         setEnemy(new Enemy[15]);
         setJumpBoxes(new JumpBox[14]);
-        setPlayer(new Player(true, 100, 100));
 
+    }
+
+    @Override
+    public void draw(){
+
+
+        setPlayer(new Player(true, 100, 100));
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //top platform
@@ -34,8 +40,6 @@ public class Level2 extends Map{
         getPlatforms()[3] = new Platform(new Position(670, 500), 50, 120);
         //platform laying down for L
         getPlatforms()[4] = new Platform(new Position(720, 570), 150, 50);
-
-
         /////////////////////////////////////////////////////////////////////////////////////////
         //platform L jumpbox
         getJumpBoxes()[0] = new JumpBox(new Position(680, 495), 20, 5);
@@ -57,9 +61,8 @@ public class Level2 extends Map{
         getJumpBoxes()[13] = new JumpBox(new Position(60, 295), 20, 5);
         /////////////////////////////////////////////////////////////////////////////////////////
         getEnemies()[0] = new FixedPathEnemy(getPlatforms()[0].getX(),getPlatforms()[0].getY(),
-                                             getPlatforms()[0].getWidth(),getPlatforms()[0].getHeight(),
-                                            true, false);
-        //getEnemies()[1] = new FixedPathEnemy(30, 650, 1200, true, false);
+                getPlatforms()[0].getWidth(),getPlatforms()[0].getHeight(),
+                true, false);
 
         getEnemies()[1] = new RunningEnemy(30, 660, 1200, true, false, getPlayer());
         //////////////////////////////////////////////////////////////////////////////////////////
@@ -79,13 +82,15 @@ public class Level2 extends Map{
         getEnemies()[14] = new Bomb(650, 500);
         //getEnemies()[15] = new Bomb(675, 500);
         //////////////////////////////////////////////////////////////////////////////////////////
-        setDoor(new Door(new Position(100, 640),getKeys().length));
+        setDoor(new Door(new Position(100, 640), getKeys().length));
         //////////////////////////////////////////////////////////////////////////////////////////
         getKeys()[0] = new Key(new Position(1155, 100), getDoor());
         getKeys()[1] = new Key(new Position(900, 280), getDoor());
         /////////////////////////////////////////////////////////////////////////////////////////
-
-
         getPlayer().init();
+
+
     }
+
 }
+

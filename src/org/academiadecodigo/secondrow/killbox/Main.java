@@ -3,27 +3,43 @@ package org.academiadecodigo.secondrow.killbox;
 import org.academiadecodigo.secondrow.killbox.maps.Level1;
 import org.academiadecodigo.secondrow.killbox.objects.Menu;
 import org.academiadecodigo.secondrow.killbox.maps.Level2;
-import org.academiadecodigo.secondrow.killbox.objects.Sound;
 
 public class Main {
 
     public static void main(String[] args) {
         Game g = new Game();
-        Sound sound = new Sound();
+        Menu menu = new Menu();
+
 
         synchronized (g) {
             try {
-                Menu menu = new Menu();
+
                 menu.drawMenu();
 
                 while (!menu.getStart())   {
                     Thread.sleep(10);
                 }
+                for(int i=0; i<g.getMaps().length; i++){
+                    if(g.getPlayerWon()){
+                        while (!menu.getStart())   {
+                            Thread.sleep(10);
+                        }
+                    }
+                    if(g.getPlayerDead()){
+                        //Desenhar as teclas
+                        while (!menu.getStart())   {
+                            Thread.sleep(10);
+                        }
+                        g.setPlayerDead(false);
+                        --i;
+                    }
+                    g.setPlayerWon(false);
+                    menu.setStart(false);
                     g.init();
-                    sound.playSound(100000, "music.wav");
-                    Level1 level1 = new Level1();
-                    //Level2 level2 = new Level2();
-                    g.start(level1);
+                    g.getMaps()[i].draw();
+                    g.start(g.getMaps()[i]);
+
+                }
 
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
