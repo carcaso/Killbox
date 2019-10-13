@@ -11,8 +11,8 @@ public class Key implements Collidable {
     private Position pos;
     public static final int SIZE = 15;
     private Door door;
-    private Text winMessage;
-
+    private boolean deleted;
+    private Sound effects = new Sound();
 
     public Key(Position position, Color color, Door door) {
         pos = position;
@@ -50,9 +50,15 @@ public class Key implements Collidable {
         return SIZE;
     }
 
+
     @Override
     public void performCollision() {
-        key.delete();
-        door.openDoor();
+        if (!deleted) {
+            key.delete();
+            effects.playSound(0,"key.wav");
+            door.openDoor();
+            deleted = true;
+        }
+
     }
 }

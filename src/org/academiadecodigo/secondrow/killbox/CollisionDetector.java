@@ -40,6 +40,11 @@ public class CollisionDetector {
         boolean isBumpingLeft = false;
 
         for (int i = 0; i < objects.length; i++) {
+            //PLayerInformation
+            int playerStartX = player.getX();
+            int playerStartY = player.getY();
+            int playerEndX = player.getX() + Var.PLAYER_WIDTH;
+            int playerEndY = player.getY() + Var.PLAYER_HEIGHT;
 
             getPositions(objects[i]);
 
@@ -76,7 +81,6 @@ public class CollisionDetector {
         }
 
         boolean[] ret = {isBumpingHead, isLanding, isBumpingRight, isBumpingLeft};
-
         return ret;
     }
 
@@ -86,7 +90,6 @@ public class CollisionDetector {
      * @param object
      */
     public boolean checkCollision(Collidable object) {
-
 
         getPositions(object);
 
@@ -121,7 +124,6 @@ public class CollisionDetector {
             }
             return true;
         }
-
         return false;
     }
 

@@ -11,11 +11,14 @@ public class Door implements Collidable {
     private boolean open;
     private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
     private Text winMessage = new Text(625, 350, "You won!");
+    private int totalButton;
+    private int howManyToOpen = 1;
 
-    public Door(Position position) {
+    public Door(Position position, int totalButton) {
         open = false;
         pos = position;
         door = new Rectangle(pos.getX(), pos.getY(), Var.DOOR_WIDTH, Var.DOOR_HEIGHT);
+        this.totalButton = totalButton;
         door.fill();
     }
 
@@ -24,10 +27,13 @@ public class Door implements Collidable {
     }
 
     public void openDoor() {
-        if (!open) {
+
+        if(howManyToOpen != totalButton){
+            howManyToOpen++;
+            return;
+        }
             door.setColor(Color.ORANGE);
             open = true;
-        }
     }
 
 

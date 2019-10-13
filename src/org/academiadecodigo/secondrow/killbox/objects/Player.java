@@ -1,5 +1,6 @@
 package org.academiadecodigo.secondrow.killbox.objects;
 
+import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.keyboard.Keyboard;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
@@ -21,6 +22,7 @@ public class Player implements Movable, KeyboardHandler {
 
     // FIXME: 2019-10-11 remove this
     private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH.mm.ss");
+    private Sound effects = new Sound();
 
     // Keybinds for playing movement
     private boolean keyD, keyA, keySpace;
@@ -136,6 +138,7 @@ public class Player implements Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 keySpace = true;
+                effects.playSound(0,"jump.wav");
                 break;
         }
     }
@@ -354,8 +357,11 @@ public class Player implements Movable, KeyboardHandler {
     }
 
     public boolean isDead() {
+
         return dead;
     }
+
+    public void setDead(boolean x) {
 
     public void setDead(boolean x) {
         this.dead = x;
