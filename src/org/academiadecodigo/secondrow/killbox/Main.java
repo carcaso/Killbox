@@ -20,6 +20,11 @@ public class Main {
                     Thread.sleep(10);
                 }
                 for(int i=0; i<g.getMaps().length; i++){
+                    if(g.getPlayerWon()){
+                        while (!menu.getStart())   {
+                            Thread.sleep(10);
+                        }
+                    }
                     if(g.getPlayerDead()){
                         //Desenhar as teclas
                         while (!menu.getStart())   {

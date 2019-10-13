@@ -9,8 +9,9 @@ public class Door implements Collidable {
     private Rectangle door;
     private Position pos;
     private boolean open;
-    private Rectangle winRectangle = new Rectangle(427, 240, 426, 240);
-    private Text winMessage = new Text(625, 350, "You won!");
+    private Rectangle winRectangle = new Rectangle(Var.PADDING + Var.CELL_SIZE, Var.PADDING + Var.CELL_SIZE,
+            Var.WIDTH - 2 * Var.CELL_SIZE, Var.HEIGHT - 2 * Var.CELL_SIZE);
+    private Text winMessage = new Text(625, 350, "YOU WON!");
     private int totalButton;
     private int howManyToOpen = 1;
 
@@ -43,10 +44,30 @@ public class Door implements Collidable {
 
     @Override
     public void performCollision() {
-        winRectangle.setColor(Color.GREEN);
+
+
+        winRectangle.setColor(Color.LIGHT_GRAY);
         winRectangle.fill();
         winMessage.grow(150, 50);
         winMessage.draw();
+
+        Rectangle nextLevel = new Rectangle(400, 500, 200, 70);
+        nextLevel.setColor(Color.BLACK);
+        nextLevel.draw();
+
+        Text repeatLevelText = new Text(440, 530, "NEXT LEVEL (Press S)");
+        repeatLevelText.grow(10, 10);
+        repeatLevelText.draw();
+
+
+        Rectangle quit = new Rectangle(700, 500, 200, 70);
+        quit.setColor(Color.BLACK);
+        quit.draw();
+
+        Text quitText = new Text(765, 530, "QUIT (Press Q)");
+        quitText.grow(10, 10);
+        quitText.draw();
+
     }
 
     @Override
