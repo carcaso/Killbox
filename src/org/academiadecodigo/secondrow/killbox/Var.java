@@ -1,7 +1,7 @@
 package org.academiadecodigo.secondrow.killbox;
 
 public class Var {
-    public static final int DELAY = 10;
+    public static final int DELAY = 15;
     public static final int PADDING = 10;
     public static final int DOOR_WIDTH = 40;
     public static final int DOOR_HEIGHT = 60;

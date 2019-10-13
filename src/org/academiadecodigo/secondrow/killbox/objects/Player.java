@@ -200,10 +200,10 @@ public class Player implements Movable, KeyboardHandler {
                         && (playerEndX < objectEndX)
                         && (ogPlayerEndX < objectStartX)) {
 
-                    xMovement = -10;
+                    xMovement = playerEndX - objectStartX - 15;
                     playerAvatar.translate(xMovement, 0);
-
                     System.out.println("SPAM LEFT TO RIGHT " + xMovement);
+
 
                     xMovement = 0;
                     yMovement = 0;
