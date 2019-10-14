@@ -12,7 +12,7 @@ public class Game {
     private Player p1;
     private CollisionDetector collisionDetector;
     //must exist
-    private Map[] maps = { new Level4(), new FinalLevel()};
+    private Map[] maps = { new Level1(), new Level2(), new Level4(), new FinalLevel()};
 
     private boolean playerDead = false;
     private boolean playerWon = false;
