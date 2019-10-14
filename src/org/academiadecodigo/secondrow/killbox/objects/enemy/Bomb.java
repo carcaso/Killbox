@@ -21,6 +21,15 @@ public class Bomb extends Enemy implements Collidable {
     }
 
 
+    public Bomb(int x, int y, int width, int height) {
+
+        pos = new Position(x, y);
+        bomb = new Rectangle(x, y, width, height);
+        bomb.setColor(Color.RED);
+        bomb.fill();
+    }
+
+
     @Override
     public void performCollision() {
         super.performCollision();

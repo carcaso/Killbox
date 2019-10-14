@@ -26,9 +26,9 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
     private Ellipse enemy;
 
 
-    public RunningEnemy (int x, int y, int endOfPath, boolean horizontal, boolean vertical, Player player){
+    public RunningEnemy(int x, int y, int endOfPath, boolean horizontal, boolean vertical, Player player) {
 
-        this.end = endOfPath;
+        end = endOfPath;
         this.horizontal = horizontal;
         this.vertical = vertical;
 
@@ -37,8 +37,9 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
         enemy = new Ellipse(x, y, SIZE, SIZE);
         enemy.setColor(Color.ORANGE);
         enemy.fill();
-        start = pos.getX();
-    }
+        if(horizontal) {start = pos.getX();}
+        if(vertical) {start = pos.getY();}
+}
 
 
 
@@ -62,10 +63,10 @@ public class RunningEnemy extends Enemy implements Movable ,Collidable {
 
     public void moveVertical(){
 
-        int start = pos.getY();
+        dy = 0;
 
         if(enemy.getY() == end) {block1 = true;}
-        if(start < end) {
+        if(start < end && !block1) {
             if(enemy.getX() == player.getX() && player.getY() > enemy.getY()){
                 pos.setY(getY() + Var.ENEMY_SPEED * 2);
                 dy = Var.ENEMY_SPEED * 2;

@@ -19,7 +19,7 @@ public class Level2 extends Map{
         setPlatforms(new Platform[5]);
         setKeys(new Key[2]);
         setEnemy(new Enemy[15]);
-        setJumpBoxes(new JumpBox[14]);
+        setJumpBoxes(new JumpBox[13]);
 
     }
 
@@ -58,7 +58,7 @@ public class Level2 extends Map{
         getJumpBoxes()[11] = new JumpBox(new Position(1050, 125), 20, 5, 2);
         getJumpBoxes()[12] = new JumpBox(new Position(1150, 125), 20, 5, 3);
         //key jumpbox
-        getJumpBoxes()[13] = new JumpBox(new Position(60, 295), 20, 5, 1);
+        //getJumpBoxes()[13] = new JumpBox(new Position(60, 295), 20, 5, 1);
         /////////////////////////////////////////////////////////////////////////////////////////
         getEnemies()[0] = new FixedPathEnemy(getPlatforms()[0].getX(),getPlatforms()[0].getY(),
                 getPlatforms()[0].getWidth(),getPlatforms()[0].getHeight(),
@@ -84,7 +84,7 @@ public class Level2 extends Map{
         //////////////////////////////////////////////////////////////////////////////////////////
         setDoor(new Door(new Position(100, 640), getKeys().length));
         //////////////////////////////////////////////////////////////////////////////////////////
-        getKeys()[0] = new Key(new Position(1155, 100), getDoor());
+        getKeys()[0] = new Key(new Position(920, 100), getDoor());
         getKeys()[1] = new Key(new Position(900, 280), getDoor());
         /////////////////////////////////////////////////////////////////////////////////////////
         getPlayer().init();

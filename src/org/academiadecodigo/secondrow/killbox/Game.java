@@ -2,10 +2,7 @@ package org.academiadecodigo.secondrow.killbox;
 
 import org.academiadecodigo.secondrow.graphics.Color;
 import org.academiadecodigo.secondrow.graphics.Rectangle;
-import org.academiadecodigo.secondrow.killbox.maps.FinalLevel;
-import org.academiadecodigo.secondrow.killbox.maps.Level1;
-import org.academiadecodigo.secondrow.killbox.maps.Level2;
-import org.academiadecodigo.secondrow.killbox.maps.Map;
+import org.academiadecodigo.secondrow.killbox.maps.*;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
 
 public class Game {
@@ -15,7 +12,7 @@ public class Game {
     private Player p1;
     private CollisionDetector collisionDetector;
     //must exist
-    private Map[] maps = {new Level1(), new Level2(), new FinalLevel()};
+    private Map[] maps = { new Level4(), new FinalLevel()};
 
     private boolean playerDead = false;
     private boolean playerWon = false;
