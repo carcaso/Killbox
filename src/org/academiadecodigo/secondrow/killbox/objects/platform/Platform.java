@@ -64,7 +64,7 @@ public class Platform implements Collidable {
 
     @Override
     public void performCollision() {
-        // This method is not used.
+        // This method is not used
     }
 
     public int getWidth() {
