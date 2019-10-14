@@ -5,6 +5,7 @@ import org.academiadecodigo.secondrow.graphics.Ellipse;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Movable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class FixedPathEnemy extends Enemy implements Movable, Collidable {
 
@@ -13,7 +14,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
     private int distanceFromPlatform = 15 + SIZE;
 
     private Position pos;
-    private Ellipse enemy;
+    private Picture enemy;
+
 
     private int platformX;
     private int platformY;
@@ -45,9 +47,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         this.directionRight = directionRight;
 
         pos = new Position(platformX - distanceFromPlatform, platformY - distanceFromPlatform);
-        enemy = new Ellipse(pos.getX(), pos.getY(), SIZE, SIZE);
-        enemy.setColor(Color.ORANGE);
-        enemy.fill();
+        enemy = new Picture(pos.getX(), pos.getY(), "resources/pictures/enemy.png");
+        enemy.draw();
     }
 
     public FixedPathEnemy(int x, int y, int endOfPath, boolean horizontal, boolean vertical){
@@ -57,9 +58,8 @@ public class FixedPathEnemy extends Enemy implements Movable, Collidable {
         this.vertical = vertical;
 
         pos = new Position(x, y);
-        enemy = new Ellipse(x, y, SIZE, SIZE);
-        enemy.setColor(Color.ORANGE);
-        enemy.fill();
+        enemy = new Picture(x, y, "resources/pictures/enemy.png");
+        enemy.draw();
         start = pos.getX();
     }
 

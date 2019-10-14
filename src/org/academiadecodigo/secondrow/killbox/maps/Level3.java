@@ -30,6 +30,6 @@ public class Level3 extends Map{
 
         setPlayer(new Player(true, Var.PADDING + Var.WALL_PADDING + 700, 200));
 
-        getPlatforms()[0] = new Platform(new Position(50, 50), 100, 100);
+        getPlatforms()[0] = new Platform(new Position(50, 50), 100, 100,"resources/pictures/platform1.png");
     }
 }

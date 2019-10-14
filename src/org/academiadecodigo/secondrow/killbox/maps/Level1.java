@@ -33,7 +33,7 @@ public class Level1 extends Map {
         getPlatforms()[0] = new Platform(
                 new Position(Var.PADDING + Var.WIDTH - Var.WALL_PADDING - 6 * Var.CELL_SIZE,
                         10 * Var.CELL_SIZE),
-                6 * Var.CELL_SIZE, Var.CELL_SIZE);
+                6 * Var.CELL_SIZE, Var.CELL_SIZE,"resources/pictures/platform1.png");
 
         // middle platform
         getPlatforms()[1] = new Platform(Var.CELL_SIZE * 10, Var.CELL_SIZE * 2);

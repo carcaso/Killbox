@@ -111,8 +111,6 @@ public abstract class Map {
             jumpBoxes[i].delete();
         }
 
-        door.delete();
-
         for (int i = 0; i < keys.length; i++) {
 
             keys[i].delete();

@@ -1,23 +1,17 @@
 package org.academiadecodigo.secondrow.killbox.objects.enemy;
 
-import org.academiadecodigo.secondrow.graphics.Color;
-import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
-import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Bomb extends Enemy implements Collidable {
 
 
-    private int SIZE = 5;
-    private Rectangle bomb;
-    private Position pos;
+    private Picture bomb;
 
     public Bomb(int x, int y) {
 
-        pos = new Position(x, y);
-        bomb = new Rectangle(x, y, SIZE, SIZE);
-        bomb.setColor(Color.RED);
-        bomb.fill();
+        bomb = new Picture(x, y, "resources/pictures/seamine2.png");
+        bomb.draw();
     }
 
 
@@ -45,8 +39,6 @@ public class Bomb extends Enemy implements Collidable {
     public int getY() {
         return bomb.getY();
     }
-
-    ///////////////////////////////////////////////////////////////////
 
     public void delete() {
     }

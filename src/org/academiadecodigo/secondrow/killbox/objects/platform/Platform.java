@@ -6,13 +6,14 @@ import org.academiadecodigo.secondrow.killbox.Var;
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Platform implements Collidable {
 
     private Position pos;
     private int width;
     private int height;
-    private Rectangle platform;
+    private Picture platform;
 
     /**
      *
@@ -20,16 +21,14 @@ public class Platform implements Collidable {
      * @param width
      * @param height
      */
-    public Platform(Position pos, int width, int height) {
+    public Platform(Position pos, int width, int height, String path) {
 
         this.pos = pos;
         this.width = width;
         this.height = height;
 
-        platform = new Rectangle(pos.getX(), pos.getY(), width, height);
-
-        platform.setColor(Color.DARK_GRAY);
-        platform.fill();
+        platform = new Picture(pos.getX(), pos.getY(), path);
+        platform.draw();
     }
 
     /**
@@ -44,14 +43,13 @@ public class Platform implements Collidable {
         }
         this.width = width;
         this.height = height;
-        platform = createPlatformInCenter(width, height);
-        platform.setColor(Color.DARK_GRAY);
-        platform.fill();
+        platform = createPlatformInCenter(width,height);
+        platform.draw();
 
         System.out.println("Platform: (x,y) (" + getX() + "," + getY() + ")" + height);
     }
 
-    private Rectangle createPlatformInCenter(int widthInCells, int heightInCells) {
+    private Picture createPlatformInCenter(int widthInCells, int heightInCells) {
         if(width % 2 != 0 || height % 2 != 0) {
             System.err.println("ATENTION! These dimentions are not good. Choose an even" +
                     " number of Cells.");
@@ -60,7 +58,7 @@ public class Platform implements Collidable {
         int y = Var.PADDING + Var.HEIGHT / 2 - height / 2;
         pos = new Position(x, y);
 
-        return new Rectangle(x, y, width, height);
+        return new Picture(x, y,"resources/pictures/platform2.png");
     }
 
     @Override

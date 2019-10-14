@@ -31,15 +31,15 @@ public class Level2 extends Map{
 
         //////////////////////////////////////////////////////////////////////////////////////////
         //top platform
-        getPlatforms()[0] = new Platform(new Position(100, 130), 1080, 50);
+        getPlatforms()[0] = new Platform(new Position(100, 130), 1080, 50,"resources/pictures/platform1.png");
         //left platform
-        getPlatforms()[1] = new Platform(new Position(35,300),560, 100);
+        getPlatforms()[1] = new Platform(new Position(35,300),560, 100,"resources/pictures/platform1.png");
         //right platform
-        getPlatforms()[2] = new Platform(new Position(695, 300), 560, 100);
+        getPlatforms()[2] = new Platform(new Position(695, 300), 560, 100,"resources/pictures/platform1.png");
         //platform standing up for L
-        getPlatforms()[3] = new Platform(new Position(670, 500), 50, 120);
+        getPlatforms()[3] = new Platform(new Position(670, 500), 50, 120,"resources/pictures/platform1.png");
         //platform laying down for L
-        getPlatforms()[4] = new Platform(new Position(720, 570), 150, 50);
+        getPlatforms()[4] = new Platform(new Position(720, 570), 150, 50,"resources/pictures/platform1.png");
         /////////////////////////////////////////////////////////////////////////////////////////
         //platform L jumpbox
         getJumpBoxes()[0] = new JumpBox(new Position(680, 495), 20, 5);

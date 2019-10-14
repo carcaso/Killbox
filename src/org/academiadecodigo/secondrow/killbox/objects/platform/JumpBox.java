@@ -5,13 +5,14 @@ import org.academiadecodigo.secondrow.graphics.Rectangle;
 import org.academiadecodigo.secondrow.killbox.objects.Collidable;
 import org.academiadecodigo.secondrow.killbox.objects.Position;
 import org.academiadecodigo.secondrow.killbox.objects.Sound;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class JumpBox implements Collidable {
 
     private Position pos;
     private int width;
     private int height;
-    private Rectangle platform;
+    private Picture platform;
 
     public JumpBox(Position pos, int width, int height) {
 
@@ -19,10 +20,8 @@ public class JumpBox implements Collidable {
         this.width = width;
         this.height = height;
 
-        platform = new Rectangle(pos.getX(), pos.getY(), width, height);
-
-        platform.setColor(Color.RED);
-        platform.fill();
+        platform = new Picture(pos.getX(), pos.getY(), "resources/pictures/jumpBox.png");
+        platform.draw();
     }
 
     @Override

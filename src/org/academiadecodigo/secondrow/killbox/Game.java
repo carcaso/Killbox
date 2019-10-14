@@ -7,10 +7,12 @@ import org.academiadecodigo.secondrow.killbox.maps.Level1;
 import org.academiadecodigo.secondrow.killbox.maps.Level2;
 import org.academiadecodigo.secondrow.killbox.maps.Map;
 import org.academiadecodigo.secondrow.killbox.objects.Player;
+import org.academiadecodigo.secondrow.pictures.Picture;
+
 
 public class Game {
 
-    private Rectangle background;
+    private Picture background;
     private Rectangle walls;
     private Player p1;
     private CollisionDetector collisionDetector;
@@ -52,10 +54,8 @@ public class Game {
         walls.setColor(Color.DARK_GRAY);
         walls.fill();
 
-        background = new Rectangle(Var.PADDING + Var.CELL_SIZE, Var.PADDING + Var.CELL_SIZE,
-                Var.WIDTH - 2 * Var.CELL_SIZE, Var.HEIGHT - 2 * Var.CELL_SIZE);
-        background.setColor(Color.LIGHT_GRAY);
-        background.fill();
+        background = new Picture (Var.PADDING, Var.PADDING, "resources/pictures/backgroundLevel1.png");
+        background.draw();
     }
 
 
