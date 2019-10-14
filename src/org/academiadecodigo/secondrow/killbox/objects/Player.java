@@ -6,10 +6,11 @@ import org.academiadecodigo.secondrow.keyboard.KeyboardEvent;
 import org.academiadecodigo.secondrow.keyboard.KeyboardEventType;
 import org.academiadecodigo.secondrow.keyboard.KeyboardHandler;
 import org.academiadecodigo.secondrow.killbox.Var;
+import org.academiadecodigo.secondrow.pictures.Picture;
 
 public class Player implements Movable, KeyboardHandler {
 
-    private Rectangle playerAvatar;
+    private Picture playerAvatar;
     private Keyboard keyboard;
     private boolean dead;
 
@@ -34,12 +35,12 @@ public class Player implements Movable, KeyboardHandler {
     public Player(boolean specialJump, int x, int y){
         this.specialJump = specialJump;
         this.keyboard = new Keyboard(this);
-        playerAvatar = new Rectangle(x, y, Var.PLAYER_WIDTH, Var.PLAYER_HEIGHT);
+        playerAvatar = new Picture(x, y, "resources/pictures/playerRight.png");
 
     }
 
     public void init() {
-        playerAvatar.fill();
+        playerAvatar.draw();
 
         addKeybind(KeyboardEvent.KEY_A, KeyboardEventType.KEY_PRESSED);
         addKeybind(KeyboardEvent.KEY_A, KeyboardEventType.KEY_RELEASED);
