@@ -9,11 +9,11 @@
         <property name="main.class" value="org.academiadecodigo.secondrow.killbox.Main" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
-        <property name="lib.dir" value="lib" />
+        <!--property name="lib.dir" value="lib" /-->
         <property name="resources.dir" value="resources"/>
-        <path id="classpath">
+        <!--path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
-        </path>
+        </path-->
     </target>
 
     <!-- Creates the build directories to hold JAR and Class files -->
@@ -29,7 +29,7 @@
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
         <javac srcdir="${src.dir}" destdir="${classes.dir}">
-            <classpath refid="classpath"/>
+            <!--classpath refid="classpath"/-->
         </javac>
     </target>
 
@@ -38,9 +38,9 @@
         <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
-                <attribute name="Class-Path" value="${lib.dir} ${resources.dir}" />
+                <!--attribute name="Class-Path" value="${lib.dir} ${resources.dir}" /-->
             </manifest>
-            <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+            <!--zipgroupfileset dir="${lib.dir}" includes="*.jar"/-->
             <fileset dir=".">
                 <include name="**/${resources.dir}/**"/>
             </fileset>
