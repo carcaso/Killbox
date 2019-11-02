@@ -6,3 +6,4 @@
 **/*.iml
 **/.idea/*.xml
 **/out/*.class
+**/build/*
