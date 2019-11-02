@@ -1,7 +1,17 @@
 # Killbox Game Project
 
-Based on http://horstmann.com/sjsu/graphics/
+First group project for **<Academia de Código_>** @FUNdão #31 STRINGrays
 
-First project for Academia de Código @FUNdão - #31 Stringrays
+This game is a platform puzzle game. The player must overcome some obstacles to reach a door that takes the player to the next level. 
 
-This game is a platform puzzle game. Player must overcome some difficulties to reach a door that takes the player to the next level. MVP is aiming for only one level with good collision mechanics and a good jump mechanic.
+**Project contributors:**
+
+[Bernardo Telo](https://www.linkedin.com/in/bernardo-telo/)
+
+[Filipe Lopes](https://www.linkedin.com/in/fcruzlopes/)
+
+[Lais Nascimento](https://www.linkedin.com/in/nascimentolais/)
+
+[Mariana Aleixo de Barcelos](https://www.linkedin.com/in/mialeixo/)
+
+[Rui da Silva Rodrigues](https://www.linkedin.com/in/rui-silva-rodrigues/)
